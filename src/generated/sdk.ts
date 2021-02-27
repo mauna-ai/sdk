@@ -1,3 +1,7 @@
+import { GraphQLClient } from 'graphql-request';
+import * as Dom from 'graphql-request/dist/types.dom';
+import { print } from 'graphql';
+import gql from 'graphql-tag';
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
@@ -6693,4 +6697,255 @@ export type TextToSpeechQuery = (
   )> }
 );
 
+
+export const ParseContextDocument = gql`
+    query parseContext($turns: [ContextObject!]!) {
+  callParseContext(turns: $turns) {
+    context {
+      mentions {
+        evokes
+        phrase
+      }
+    }
+  }
+}
+    `;
+export const ParseAceDocument = gql`
+    query parseACE($text: String!, $format: ACEOutputType = drspp) {
+  callParseACE(text: $text, format: $format, guess: true) {
+    result
+  }
+}
+    `;
+export const ParaphraseSentenceDocument = gql`
+    query paraphraseSentence($sentence: String!, $count: Int! = 3) {
+  callParaphraseSentence(input: $sentence, number_of_paraphrases: $count) {
+    paraphrases
+  }
+}
+    `;
+export const PredictNextTurnDocument = gql`
+    query predictNextTurn($history: [String!]!, $alternatives: [String!]!) {
+  callNextDialogTurn(history: $history, alternatives: $alternatives) {
+    nextTurn: alternative
+    confidence
+  }
+}
+    `;
+export const MatchIntentDocument = gql`
+    query matchIntent($input: String!, $intenst: [String!]!, $threshold: Float! = 0.7) {
+  callMatchIntent(
+    input: $input
+    possible_intents: $intenst
+    similarity_threshold: $threshold
+  ) {
+    matches {
+      intent: matched_intent
+      confidence: similarity
+      slots: word_matches {
+        slot
+        value: extracted_word
+        match_type
+        confidence: similarity
+      }
+    }
+  }
+}
+    `;
+export const MeasureSimilarityDocument = gql`
+    query measureSimilarity($sentence: String!, $compareWith: [String!]!) {
+  callMeasureSimilarity(sentence: $sentence, compareWith: $compareWith) {
+    result {
+      score
+      sentencePair
+    }
+  }
+}
+    `;
+export const ResolveCoreferencesDocument = gql`
+    query resolveCoreferences($text: String!) {
+  callNlpDoc(text: $text) {
+    coref: extension {
+      detected: has_coref
+      resolved: coref_resolved
+      scores: coref_scores {
+        candidates: scores {
+          mention
+          score
+        }
+      }
+    }
+  }
+}
+    `;
+export const ToVecDocument = gql`
+    query toVec($text: String!) {
+  callNlpDoc(text: $text) {
+    has_vector
+    vector
+    vector_norm
+    sentences: sents {
+      has_vector
+      vector_norm
+      vector
+      text
+    }
+    entities: ents {
+      text
+      has_vector
+      vector_norm
+      vector
+    }
+  }
+}
+    `;
+export const GetSentimentDocument = gql`
+    query getSentiment($text: String!) {
+  callNlpDoc(text: $text) {
+    sentiment
+    sentences: sents {
+      text
+      sentiment
+    }
+  }
+}
+    `;
+export const ParseTextDocument = gql`
+    query parseText($text: String!) {
+  callNlpDoc(text: $text) {
+    categories: cats {
+      label
+      score
+    }
+    entities: ents {
+      label
+      lemma
+      text
+    }
+    sentences: sents {
+      text
+      label
+      lemma
+    }
+  }
+}
+    `;
+export const ExtractNumericDataDocument = gql`
+    query extractNumericData($text: String!) {
+  callNlpDoc(text: $text) {
+    tokens {
+      numeric_analysis: extension {
+        data: nfh_head
+        has_numeric: is_nfh
+      }
+    }
+  }
+}
+    `;
+export const ParseTextTokensDocument = gql`
+    query parseTextTokens($text: String!) {
+  callNlpDoc(text: $text) {
+    tokens {
+      dependency: dep
+      entity_type: ent_type
+      is_alpha
+      is_currency
+      is_digit
+      is_oov
+      is_sent_start
+      is_stop
+      is_title
+      lemma
+      like_email
+      like_num
+      like_url
+      part_of_speech: pos
+      prob
+      tag
+      text
+    }
+  }
+}
+    `;
+export const RenderCssDocument = gql`
+    query renderCSS($ssml: String!, $css: String) {
+  callCompose(
+    init: {styled_ssml: $ssml, voice_css: $css}
+    pipeline: [{op: "callApplyVoiceCSS", transform: "r => ({text: r.ssml})"}, {op: "callTextToSpeech", transform: ""}]
+  ) {
+    result
+  }
+}
+    `;
+export const SpeechToTextDocument = gql`
+    query speechToText($audio: String!) {
+  callSpeechToText(audioB64: $audio) {
+    transcript: alternatives {
+      text: transcript
+    }
+  }
+}
+    `;
+export const TextToSpeechDocument = gql`
+    query textToSpeech($text: String!) {
+  callTextToSpeech(text: $text) {
+    audio: audioB64
+  }
+}
+    `;
+
+export type SdkFunctionWrapper = <T>(action: () => Promise<T>) => Promise<T>;
+
+
+const defaultWrapper: SdkFunctionWrapper = sdkFunction => sdkFunction();
+export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
+  return {
+    parseContext(variables: ParseContextQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ParseContextQuery> {
+      return withWrapper(() => client.request<ParseContextQuery>(print(ParseContextDocument), variables, requestHeaders));
+    },
+    parseACE(variables: ParseAceQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ParseAceQuery> {
+      return withWrapper(() => client.request<ParseAceQuery>(print(ParseAceDocument), variables, requestHeaders));
+    },
+    paraphraseSentence(variables: ParaphraseSentenceQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ParaphraseSentenceQuery> {
+      return withWrapper(() => client.request<ParaphraseSentenceQuery>(print(ParaphraseSentenceDocument), variables, requestHeaders));
+    },
+    predictNextTurn(variables: PredictNextTurnQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PredictNextTurnQuery> {
+      return withWrapper(() => client.request<PredictNextTurnQuery>(print(PredictNextTurnDocument), variables, requestHeaders));
+    },
+    matchIntent(variables: MatchIntentQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MatchIntentQuery> {
+      return withWrapper(() => client.request<MatchIntentQuery>(print(MatchIntentDocument), variables, requestHeaders));
+    },
+    measureSimilarity(variables: MeasureSimilarityQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<MeasureSimilarityQuery> {
+      return withWrapper(() => client.request<MeasureSimilarityQuery>(print(MeasureSimilarityDocument), variables, requestHeaders));
+    },
+    resolveCoreferences(variables: ResolveCoreferencesQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ResolveCoreferencesQuery> {
+      return withWrapper(() => client.request<ResolveCoreferencesQuery>(print(ResolveCoreferencesDocument), variables, requestHeaders));
+    },
+    toVec(variables: ToVecQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ToVecQuery> {
+      return withWrapper(() => client.request<ToVecQuery>(print(ToVecDocument), variables, requestHeaders));
+    },
+    getSentiment(variables: GetSentimentQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetSentimentQuery> {
+      return withWrapper(() => client.request<GetSentimentQuery>(print(GetSentimentDocument), variables, requestHeaders));
+    },
+    parseText(variables: ParseTextQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ParseTextQuery> {
+      return withWrapper(() => client.request<ParseTextQuery>(print(ParseTextDocument), variables, requestHeaders));
+    },
+    extractNumericData(variables: ExtractNumericDataQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ExtractNumericDataQuery> {
+      return withWrapper(() => client.request<ExtractNumericDataQuery>(print(ExtractNumericDataDocument), variables, requestHeaders));
+    },
+    parseTextTokens(variables: ParseTextTokensQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ParseTextTokensQuery> {
+      return withWrapper(() => client.request<ParseTextTokensQuery>(print(ParseTextTokensDocument), variables, requestHeaders));
+    },
+    renderCSS(variables: RenderCssQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<RenderCssQuery> {
+      return withWrapper(() => client.request<RenderCssQuery>(print(RenderCssDocument), variables, requestHeaders));
+    },
+    speechToText(variables: SpeechToTextQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SpeechToTextQuery> {
+      return withWrapper(() => client.request<SpeechToTextQuery>(print(SpeechToTextDocument), variables, requestHeaders));
+    },
+    textToSpeech(variables: TextToSpeechQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<TextToSpeechQuery> {
+      return withWrapper(() => client.request<TextToSpeechQuery>(print(TextToSpeechDocument), variables, requestHeaders));
+    }
+  };
+}
+export type Sdk = ReturnType<typeof getSdk>;
 // Generated on 2021-02-28T03:07:36+00:00

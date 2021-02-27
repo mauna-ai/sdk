@@ -1,0 +1,16 @@
+query parseContext($turns: [ContextObject!]!) {
+  callParseContext(turns: $turns) {
+    context {
+      mentions {
+        evokes
+        phrase
+      }
+    }
+  }
+}
+
+query parseACE($text: String!, $format: ACEOutputType = drspp) {
+  callParseACE(text: $text, format: $format, guess: true) {
+    result
+  }
+}

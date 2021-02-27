@@ -7,12 +7,20 @@ module.exports = {
       }
     }
   }],
-  documents: null,
+  documents: "./src/documents/*.graphql",
   generates: {
-    "src/generated/graphql.ts": {
+    "./src/generated/graphql.ts": {
       plugins: [
         "typescript",
         "typescript-operations",
+        "time"
+      ]
+    },
+    "./src/generated/sdk.ts": {
+      plugins: [
+        "typescript",
+        "typescript-operations",
+        "typescript-graphql-request",
         "time"
       ]
     },
