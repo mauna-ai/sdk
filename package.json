@@ -1,0 +1,32 @@
+{
+  "name": "@mauna-ai/codegen",
+  "version": "0.1.0",
+  "description": "Code generated from Mauna API schema for CLI, SDK etc",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "codegen": "graphql-codegen --config codegen.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mauna-ai/codegen.git"
+  },
+  "author": "diwank@mauna.ai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mauna-ai/codegen/issues"
+  },
+  "homepage": "https://github.com/mauna-ai/codegen#readme",
+  "devDependencies": {
+    "@graphql-codegen/cli": "1.21.1",
+    "@graphql-codegen/introspection": "1.18.1",
+    "@graphql-codegen/time": "^2.0.2",
+    "@graphql-codegen/typescript": "1.21.0",
+    "@graphql-codegen/typescript-graphql-request": "^3.0.2",
+    "@graphql-codegen/typescript-oclif": "^1.17.9",
+    "@graphql-codegen/typescript-operations": "^1.17.14"
+  },
+  "dependencies": {
+    "graphql": "^15.5.0"
+  }
+}
