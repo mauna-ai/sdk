@@ -1,7 +1,7 @@
 import { GraphQLClient } from 'graphql-request';
 import * as Dom from 'graphql-request/dist/types.dom';
 import { print } from 'graphql';
-import { default as gql } from './src/utils/gqlLodash.ts';
+import { gql } from '../utils/gqlLodash';
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
@@ -6698,7 +6698,7 @@ export type TextToSpeechQuery = (
 );
 
 
-export const ParseContextDocument = default`
+export const ParseContextDocument = /*#__PURE__*/ gql`
     query parseContext($turns: [ContextObject!]!) {
   callParseContext(turns: $turns) {
     context {
@@ -6710,21 +6710,21 @@ export const ParseContextDocument = default`
   }
 }
     `;
-export const ParseAceDocument = default`
+export const ParseAceDocument = /*#__PURE__*/ gql`
     query parseACE($text: String!, $format: ACEOutputType = drspp) {
   callParseACE(text: $text, format: $format, guess: true) {
     result
   }
 }
     `;
-export const ParaphraseSentenceDocument = default`
+export const ParaphraseSentenceDocument = /*#__PURE__*/ gql`
     query paraphraseSentence($sentence: String!, $count: Int! = 3) {
   callParaphraseSentence(input: $sentence, number_of_paraphrases: $count) {
     paraphrases
   }
 }
     `;
-export const PredictNextTurnDocument = default`
+export const PredictNextTurnDocument = /*#__PURE__*/ gql`
     query predictNextTurn($history: [String!]!, $alternatives: [String!]!) {
   callNextDialogTurn(history: $history, alternatives: $alternatives) {
     nextTurn: alternative
@@ -6732,7 +6732,7 @@ export const PredictNextTurnDocument = default`
   }
 }
     `;
-export const MatchIntentDocument = default`
+export const MatchIntentDocument = /*#__PURE__*/ gql`
     query matchIntent($input: String!, $intenst: [String!]!, $threshold: Float! = 0.7) {
   callMatchIntent(
     input: $input
@@ -6752,7 +6752,7 @@ export const MatchIntentDocument = default`
   }
 }
     `;
-export const MeasureSimilarityDocument = default`
+export const MeasureSimilarityDocument = /*#__PURE__*/ gql`
     query measureSimilarity($sentence: String!, $compareWith: [String!]!) {
   callMeasureSimilarity(sentence: $sentence, compareWith: $compareWith) {
     result {
@@ -6762,7 +6762,7 @@ export const MeasureSimilarityDocument = default`
   }
 }
     `;
-export const ResolveCoreferencesDocument = default`
+export const ResolveCoreferencesDocument = /*#__PURE__*/ gql`
     query resolveCoreferences($text: String!) {
   callNlpDoc(text: $text) {
     coref: extension {
@@ -6778,7 +6778,7 @@ export const ResolveCoreferencesDocument = default`
   }
 }
     `;
-export const ToVecDocument = default`
+export const ToVecDocument = /*#__PURE__*/ gql`
     query toVec($text: String!) {
   callNlpDoc(text: $text) {
     has_vector
@@ -6799,7 +6799,7 @@ export const ToVecDocument = default`
   }
 }
     `;
-export const GetSentimentDocument = default`
+export const GetSentimentDocument = /*#__PURE__*/ gql`
     query getSentiment($text: String!) {
   callNlpDoc(text: $text) {
     sentiment
@@ -6810,7 +6810,7 @@ export const GetSentimentDocument = default`
   }
 }
     `;
-export const ParseTextDocument = default`
+export const ParseTextDocument = /*#__PURE__*/ gql`
     query parseText($text: String!) {
   callNlpDoc(text: $text) {
     categories: cats {
@@ -6830,7 +6830,7 @@ export const ParseTextDocument = default`
   }
 }
     `;
-export const ExtractNumericDataDocument = default`
+export const ExtractNumericDataDocument = /*#__PURE__*/ gql`
     query extractNumericData($text: String!) {
   callNlpDoc(text: $text) {
     tokens {
@@ -6842,7 +6842,7 @@ export const ExtractNumericDataDocument = default`
   }
 }
     `;
-export const ParseTextTokensDocument = default`
+export const ParseTextTokensDocument = /*#__PURE__*/ gql`
     query parseTextTokens($text: String!) {
   callNlpDoc(text: $text) {
     tokens {
@@ -6867,7 +6867,7 @@ export const ParseTextTokensDocument = default`
   }
 }
     `;
-export const RenderCssDocument = default`
+export const RenderCssDocument = /*#__PURE__*/ gql`
     query renderCSS($ssml: String!, $css: String) {
   callCompose(
     init: {styled_ssml: $ssml, voice_css: $css}
@@ -6877,7 +6877,7 @@ export const RenderCssDocument = default`
   }
 }
     `;
-export const SpeechToTextDocument = default`
+export const SpeechToTextDocument = /*#__PURE__*/ gql`
     query speechToText($audio: String!) {
   callSpeechToText(audioB64: $audio) {
     transcript: alternatives {
@@ -6886,7 +6886,7 @@ export const SpeechToTextDocument = default`
   }
 }
     `;
-export const TextToSpeechDocument = default`
+export const TextToSpeechDocument = /*#__PURE__*/ gql`
     query textToSpeech($text: String!) {
   callTextToSpeech(text: $text) {
     audio: audioB64
@@ -6948,4 +6948,4 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
   };
 }
 export type Sdk = ReturnType<typeof getSdk>;
-// Generated on 2021-02-28T03:48:13+00:00
+// Generated on 2021-02-28T05:19:44+00:00

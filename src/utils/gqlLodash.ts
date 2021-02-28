@@ -3,19 +3,19 @@ import flatten from "lodash/flatten";
 import flow from "lodash/flow";
 import zip from "lodash/zip";
 
-import gql from "graphql-tag";
+import { default as _gql } from "graphql-tag";
 import { graphqlLodash } from "graphql-lodash";
 
 const merge = flow([zip, flatten, compact]);
 
-export const gqlLodash = (strings, interpolations) => {
+export const gql = (strings: TemplateStringsArray, ...interpolations: Array<any>) => {
   const queryWithLodashDirectives = merge(strings, interpolations).join('');
   const { query, transform } = graphqlLodash(queryWithLodashDirectives);
 
-  const parsed = gql`${query}`;
+  const parsed = _gql`${query}` as any;
   parsed.transform = transform;
 
   return parsed;
 };
 
-export default gqlLodash;
+export default gql;

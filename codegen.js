@@ -18,7 +18,8 @@ module.exports = {
     },
     "./src/generated/sdk.ts": {
       config: {
-        gqlImport: "./src/utils/gqlLodash.ts#default"
+        pureMagicComment: true,
+        gqlImport: "../utils/gqlLodash#gql"
       },
       plugins: [
         "typescript",
