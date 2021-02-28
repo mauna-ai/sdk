@@ -9,7 +9,7 @@ module.exports = {
   }],
   documents: "./src/documents/*.graphql",
   generates: {
-    "./src/generated/graphql.ts": {
+    "./src/generated/types.ts": {
       plugins: [
         "typescript",
         "typescript-operations",
@@ -17,6 +17,9 @@ module.exports = {
       ]
     },
     "./src/generated/sdk.ts": {
+      config: {
+        gqlImport: "./src/utils/gqlLodash.ts#default"
+      },
       plugins: [
         "typescript",
         "typescript-operations",
