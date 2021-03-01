@@ -3,6 +3,5 @@ export function now(): number {
   const timestamp = date.getTime();
   const offset = date.getTimezoneOffset();
 
-  return (timestamp - offset);
+  return timestamp - offset;
 }
-

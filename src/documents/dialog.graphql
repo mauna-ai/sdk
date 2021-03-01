@@ -11,8 +11,16 @@ query predictNextTurn($history: [String!]!, $alternatives: [String!]!) {
   }
 }
 
-query matchIntent($input: String!, $intenst: [String!]!, $threshold: Float! = 0.7) {
-  callMatchIntent(input: $input, possible_intents: $intenst, similarity_threshold: $threshold) {
+query matchIntent(
+  $input: String!
+  $intenst: [String!]!
+  $threshold: Float! = 0.7
+) {
+  callMatchIntent(
+    input: $input
+    possible_intents: $intenst
+    similarity_threshold: $threshold
+  ) {
     matches {
       intent: matched_intent
       confidence: similarity

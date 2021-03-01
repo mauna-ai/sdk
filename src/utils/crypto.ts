@@ -3,7 +3,12 @@ import crypto from "crypto";
 
 import xor from "bitwise/buffer/xor";
 
-import {cipherMode, defaultIv, encryptionKeyLenBytes, ivLength} from "../config";
+import {
+  cipherMode,
+  defaultIv,
+  encryptionKeyLenBytes,
+  ivLength,
+} from "../config";
 
 export type encryptionKey = string;
 export type encryptedString = string;
@@ -29,7 +34,8 @@ export function decrypt(encrypted: string, password: string): string {
 }
 
 export const generateNonce = (length: number = 12): string =>
-  crypto.randomBytes(Math.round(length / 2))
+  crypto
+    .randomBytes(Math.round(length / 2))
     .toString("hex")
     .substring(0, length);
 
@@ -43,7 +49,10 @@ export const generateNonce = (length: number = 12): string =>
  * @param nonce Random string as nonce value
  * @return new key as a string
  * */
-export function generateEncryptionKey(apiKey: string, nonce: string): encryptionKey {
+export function generateEncryptionKey(
+  apiKey: string,
+  nonce: string
+): encryptionKey {
   const apiKeyByteLen = Buffer.byteLength(apiKey);
   assert(
     apiKeyByteLen === encryptionKeyLenBytes,
@@ -59,5 +68,3 @@ export function generateEncryptionKey(apiKey: string, nonce: string): encryption
 
   return key;
 }
-
-
