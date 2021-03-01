@@ -7,7 +7,7 @@
     "test": "jest",
     "codegen": "validEnv HASURA_ADMIN_SECRET && graphql-codegen --config codegen.js",
     "tsc": "tsc",
-    "docs": "typedoc src/generated/sdk.ts --out ./docs",
+    "docs": "typedoc src/index.ts --out ./docs",
     "build": "npm run codegen && npm run tsc && npm run docs"
   },
   "repository": {
