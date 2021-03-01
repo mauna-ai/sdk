@@ -13,12 +13,12 @@ query predictNextTurn($history: [String!]!, $alternatives: [String!]!) {
 
 query matchIntent(
   $input: String!
-  $intenst: [String!]!
+  $intent: [String!]!
   $threshold: Float! = 0.7
 ) {
   callMatchIntent(
     input: $input
-    possible_intents: $intenst
+    possible_intents: $intent
     similarity_threshold: $threshold
   ) {
     matches {

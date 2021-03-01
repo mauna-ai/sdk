@@ -13,7 +13,7 @@ export class Mauna {
   developerId: number;
   apiKey: string;
   client?: Client;
-  _sdk?: Sdk;
+  _api?: Sdk;
 
   constructor({ developerId, apiKey }: credentials) {
     this.initialized = false;
@@ -22,21 +22,23 @@ export class Mauna {
   }
 
   async initialize() {
-    const { developerId, apiKey } = this;
+    const { initialized, developerId, apiKey } = this;
+
+    if (initialized) return;
 
     this.client = await Client.create({ developerId, apiKey });
-    this._sdk = getSdk(this.client, withRetries);
+    this._api = getSdk(this.client, withRetries);
     this.initialized = true;
   }
 
-  public get sdk(): Sdk {
-    const { initialized, _sdk } = this;
+  public get api(): Sdk {
+    const { initialized, _api } = this;
 
-    if (!(initialized && _sdk)) {
+    if (!(initialized && _api)) {
       throw new Error("The SDK must be initialized first");
     }
 
-    return _sdk;
+    return _api;
   }
 }
 
