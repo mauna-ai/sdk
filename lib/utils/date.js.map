@@ -1,1 +1,0 @@
-{"version":3,"file":"date.js","sourceRoot":"","sources":["../../src/utils/date.ts"],"names":[],"mappings":";;;AAAA,SAAgB,GAAG;IACjB,IAAM,IAAI,GAAG,IAAI,IAAI,EAAE,CAAC;IACxB,IAAM,SAAS,GAAG,IAAI,CAAC,OAAO,EAAE,CAAC;IACjC,IAAM,MAAM,GAAG,IAAI,CAAC,iBAAiB,EAAE,CAAC;IAExC,OAAO,CAAC,SAAS,GAAG,MAAM,CAAC,CAAC;AAC9B,CAAC;AAND,kBAMC"}

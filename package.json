@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "codegen": "validEnv HASURA_ADMIN_SECRET && graphql-codegen --config codegen.js",
+    "tsc": "tsc",
     "docs": "typedoc src/generated/sdk.ts --out ./docs",
-    "codegen": "graphql-codegen --config codegen.js"
+    "build": "npm run codegen && npm run tsc && npm run docs"
   },
   "repository": {
     "type": "git",
@@ -28,7 +30,8 @@
     "@graphql-codegen/typescript-operations": "^1.17.14",
     "@types/lodash": "^4.14.168",
     "typedoc": "^0.20.28",
-    "typescript": "^4.1.x"
+    "typescript": "^4.1.x",
+    "valid-env": "^1.1.1"
   },
   "dependencies": {
     "bitwise": "^2.1.0",
