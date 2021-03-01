@@ -1,28 +1,36 @@
 require("isomorphic-fetch");
 
-import {authEndpoint} from "../config";
-import {decrypt, encrypt, generateNonce, generateEncryptionKey} from "./crypto";
-import {now} from "./date";
+import { authEndpoint } from "../config";
+import {
+  decrypt,
+  encrypt,
+  generateNonce,
+  generateEncryptionKey,
+} from "./crypto";
+import { now } from "./date";
 
-import type { encryptedString, encryptionKey} from "./crypto";
+import type { encryptedString, encryptionKey } from "./crypto";
 
 export type authRequestData = {
-  developer_id: number,
-  token_payload: encryptedString
+  developer_id: number;
+  token_payload: encryptedString;
 };
 
 export type tokenPayload = {
-  timestamp: number,
-  nonce: string
+  timestamp: number;
+  nonce: string;
 };
 
 export type authResponseData = {
-  enc_token: encryptedString
+  enc_token: encryptedString;
 };
 
 export type JWT = string;
 
-export function encode(payload: tokenPayload, key: encryptionKey): encryptedString {
+export function encode(
+  payload: tokenPayload,
+  key: encryptionKey
+): encryptedString {
   const payloadJSON = JSON.stringify(payload);
   const encrypted: encryptedString = encrypt(payloadJSON, key);
 
@@ -46,24 +54,30 @@ export function createExchangeToken(apiKey: string): [encryptedString, string] {
   return [exchangeToken, nonce];
 }
 
-export function decodeJWT(response: authResponseData, apiKey: string, nonce: string): JWT {
+export function decodeJWT(
+  response: authResponseData,
+  apiKey: string,
+  nonce: string
+): JWT {
   const key = generateEncryptionKey(apiKey, nonce);
-  const {enc_token} = response;
+  const { enc_token } = response;
 
   return decode(enc_token, key);
 }
 
-export async function requestJWT(developer_id: number, token_payload: encryptedString): Promise<authResponseData> {
+export async function requestJWT(
+  developer_id: number,
+  token_payload: encryptedString
+): Promise<authResponseData> {
   const data: authRequestData = { developer_id, token_payload };
   const body: string = JSON.stringify(data);
 
-  const response= await fetch(authEndpoint, {
+  const response = await fetch(authEndpoint, {
     method: "POST",
-    body
+    body,
   });
 
   const authData: authResponseData = await response.json();
 
   return authData;
 }
-

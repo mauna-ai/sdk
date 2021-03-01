@@ -13,5 +13,5 @@ export default {
   cipherMode,
   defaultIv,
   ivLength,
-  encryptionKeyLenBytes
+  encryptionKeyLenBytes,
 };

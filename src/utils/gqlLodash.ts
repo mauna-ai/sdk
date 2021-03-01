@@ -8,8 +8,11 @@ import { graphqlLodash } from "graphql-lodash";
 
 const merge = flow([zip, flatten, compact]);
 
-export const gql = (strings: TemplateStringsArray, ...interpolations: Array<any>) => {
-  const queryWithLodashDirectives = merge(strings, interpolations).join('');
+export const gql = (
+  strings: TemplateStringsArray,
+  ...interpolations: Array<any>
+) => {
+  const queryWithLodashDirectives = merge(strings, interpolations).join("");
   const { query, transform } = graphqlLodash(queryWithLodashDirectives);
 
   const parsed = _gql`${query}` as any;

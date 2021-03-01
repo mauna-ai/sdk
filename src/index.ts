@@ -1,8 +1,8 @@
 import Client from "./client";
-import {getSdk} from "./generated/sdk";
-import {withRetries} from "./utils/wrapper";
+import { getSdk } from "./generated/sdk";
+import { withRetries } from "./utils/wrapper";
 
-import type {Sdk} from "./generated/sdk";
+import type { Sdk } from "./generated/sdk";
 import type * as types from "./generated/types";
 import type { credentials } from "./client";
 
@@ -22,7 +22,7 @@ export class Mauna {
   }
 
   async initialize() {
-    const { developerId, apiKey} = this;
+    const { developerId, apiKey } = this;
 
     this.client = await Client.create({ developerId, apiKey });
     this._sdk = getSdk(this.client, withRetries);
@@ -40,8 +40,6 @@ export class Mauna {
   }
 }
 
-export {
-  types
-};
+export { types };
 
 export default Mauna;
