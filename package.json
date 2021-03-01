@@ -1,5 +1,5 @@
 {
-  "name": "@mauna-ai/codegen",
+  "name": "@mauna/sdk",
   "version": "0.1.0",
   "description": "Code generated from Mauna API schema for CLI, SDK etc",
   "main": "lib/index.js",
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mauna-ai/codegen.git"
+    "url": "git+https://github.com/mauna-ai/sdk.git"
   },
   "author": "diwank@mauna.ai",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mauna-ai/codegen/issues"
+    "url": "https://github.com/mauna-ai/sdk/issues"
   },
-  "homepage": "https://github.com/mauna-ai/codegen#readme",
+  "homepage": "https://github.com/mauna-ai/sdk#readme",
   "devDependencies": {
     "@graphql-codegen/cli": "1.21.1",
     "@graphql-codegen/introspection": "1.18.1",
