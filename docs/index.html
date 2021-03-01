@@ -61,14 +61,265 @@
 				<a href="#mauna-sdk" id="mauna-sdk" style="color: inherit; text-decoration: none;">
 					<h1>Mauna SDK</h1>
 				</a>
-				<a href="#docs" id="docs" style="color: inherit; text-decoration: none;">
-					<h2>Docs</h2>
+				<a href="#features" id="features" style="color: inherit; text-decoration: none;">
+					<h2>Features</h2>
 				</a>
-				<p>Docs can be found <a href="https://mauna-ai.github.io/sdk">here</a>.</p>
-				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
-					<h2>Installation</h2>
+				<ul>
+					<li>Docs can be found [here]: (<a href="https://mauna-ai.github.io/sdk">https://mauna-ai.github.io/sdk</a>).</li>
+					<li>Typesafe queries. Written in typescript.</li>
+					<li>Bindings are included in the package.</li>
+					<li>Bindings for <em>reasonml/bucklescript/rescript</em> and <em>flow.js</em> coming soon.</li>
+				</ul>
+				<a href="#installation-and-usage" id="installation-and-usage" style="color: inherit; text-decoration: none;">
+					<h2>Installation and usage</h2>
+				</a>
+				<a href="#install" id="install" style="color: inherit; text-decoration: none;">
+					<h3>Install</h3>
 				</a>
 				<p><code>npm install @mauna/sdk</code></p>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h3>Usage</h3>
+				</a>
+				<pre><code class="language-javascript"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">Mauna</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;@mauna/sdk&quot;</span><span style="color: #000000">;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">developerId</span><span style="color: #000000"> = </span><span style="color: #800000">&lt;int&gt;</span><span style="color: #000000">; // Check your profile on the dashboard for this.</span>
+<span style="color: #000000">const apiKey = &quot;&lt;64 letter api key available on your mauna dashboard&gt;&quot;;</span>
+
+<span style="color: #000000">const client = new Mauna: (</span><span style="color: #0000FF">{</span><span style="color: #000000FF"> </span><span style="color: #001080">developerId</span><span style="color: #000000FF">, </span><span style="color: #001080">apiKey</span><span style="color: #000000FF"> </span><span style="color: #0000FF">}</span><span style="color: #000000">);</span>
+
+<span style="color: #000000">// Start async block</span>
+<span style="color: #000000">: (async : () =&gt; </span><span style="color: #0000FF">{</span>
+<span style="color: #000000FF">  </span><span style="color: #AF00DB">await</span><span style="color: #000000FF"> </span><span style="color: #001080">client</span><span style="color: #000000FF">.</span><span style="color: #001080">initialize</span><span style="color: #000000FF">: ();</span>
+
+<span style="color: #000000FF">  </span><span style="color: #008000">// See API list for more info</span>
+<span style="color: #000000FF">  </span><span style="color: #001080">const</span><span style="color: #000000FF"> </span><span style="color: #001080">result</span><span style="color: #000000FF"> </span><span style="color: #000000">=</span><span style="color: #000000FF"> </span><span style="color: #AF00DB">await</span><span style="color: #000000FF"> </span><span style="color: #001080">client</span><span style="color: #000000FF">.</span><span style="color: #001080">api</span><span style="color: #000000FF">.</span><span style="color: #000000">&lt;</span><span style="color: #001080">apiFunction</span><span style="color: #000000">&gt;</span><span style="color: #000000FF">: (</span><span style="color: #800000">&lt;</span><span style="color: #267F99">apiArgs</span><span style="color: #800000">&gt;</span><span style="color: #000000FF">);</span>
+<span style="color: #000000FF">  console.log: (result);</span>
+
+<span style="color: #000000FF">  // Do something with the result</span>
+
+<span style="color: #000000FF">}): ().then: (</span>
+<span style="color: #000000FF">  console.log,</span>
+<span style="color: #000000FF">  console.error</span>
+<span style="color: #000000FF">);</span>
+</code></pre>
+				<a href="#api-list" id="api-list" style="color: inherit; text-decoration: none;">
+					<h2>API list</h2>
+				</a>
+				<a href="#apiparsecontext" id="apiparsecontext" style="color: inherit; text-decoration: none;">
+					<h3>api.parseContext</h3>
+				</a>
+				<p>Takes a list of turns (<code>{ content: string }</code>) and parses them to produce a semantic frames-based context object.</p>
+				<pre><code class="language-javascript"><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">parseContext</span><span style="color: #000000">: (</span><span style="color: #001080">turns</span><span style="color: #000000">: [{ </span><span style="color: #001080">content</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000"> }]) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">context</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">mentions</span><span style="color: #000000"> [</span>
+<span style="color: #000000">      {</span>
+<span style="color: #000000">        </span><span style="color: #001080">evokes</span><span style="color: #000000">,</span>
+<span style="color: #000000">        </span><span style="color: #001080">phrase</span>
+<span style="color: #000000">      }</span>
+<span style="color: #000000">    ]</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#apiparaphrasesentence" id="apiparaphrasesentence" style="color: inherit; text-decoration: none;">
+					<h3>api.paraphraseSentence</h3>
+				</a>
+				<p>Takes an english sentence and produces paraphrased versions of it that retain the semantic meaning of the original.</p>
+				<pre><code class="language-javascript"><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">paraphraseSentence</span><span style="color: #000000">: (</span><span style="color: #001080">sentence</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">, </span><span style="color: #001080">count</span><span style="color: #000000">: </span><span style="color: #267F99">Int</span><span style="color: #000000"> = </span><span style="color: #098658">3</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">paraphrases</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#apipredictnextturn" id="apipredictnextturn" style="color: inherit; text-decoration: none;">
+					<h3>api.predictNextTurn</h3>
+				</a>
+				<p>Takes a list of utterances as history and a list of possible alternatives that can be replied with. Returns the most likely alternative and confidence in that prediction.</p>
+				<pre><code class="language-javascript"><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">predictNextTurn</span><span style="color: #000000">: (</span><span style="color: #001080">history</span><span style="color: #000000">: [</span><span style="color: #267F99">string</span><span style="color: #000000">], </span><span style="color: #001080">alternatives</span><span style="color: #000000">: [</span><span style="color: #267F99">string</span><span style="color: #000000">]) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">nextTurn</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">confidence</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#apimatchintent" id="apimatchintent" style="color: inherit; text-decoration: none;">
+					<h3>api.matchIntent</h3>
+				</a>
+				<p>Takes a list of intents (with slots) and a user input. Performs structured information extraction to find the correct intent and fill the corresponding slots.</p>
+				<pre><code class="language-javascript"><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">matchIntent</span><span style="color: #000000">: (</span>
+<span style="color: #000000">  </span><span style="color: #001080">input</span><span style="color: #000000">: </span><span style="color: #001080">string</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">intent</span><span style="color: #000000">: [</span><span style="color: #001080">string</span><span style="color: #000000">],</span>
+<span style="color: #000000">  </span><span style="color: #001080">threshold</span><span style="color: #000000">: </span><span style="color: #001080">Float</span><span style="color: #000000"> = </span><span style="color: #098658">0.7</span>
+<span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">matches</span><span style="color: #000000"> [</span>
+<span style="color: #000000">    {</span>
+<span style="color: #000000">      </span><span style="color: #001080">intent</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">confidence</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">slots:</span><span style="color: #000000"> [</span>
+<span style="color: #000000">        {</span>
+<span style="color: #000000">          </span><span style="color: #001080">slot</span><span style="color: #000000">,</span>
+<span style="color: #000000">          </span><span style="color: #001080">value</span><span style="color: #000000">,</span>
+<span style="color: #000000">          </span><span style="color: #001080">match_type</span><span style="color: #000000">,</span>
+<span style="color: #000000">          </span><span style="color: #001080">confidence</span>
+<span style="color: #000000">        }</span>
+<span style="color: #000000">      ]</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">  ]</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#apimeasuresimilarity" id="apimeasuresimilarity" style="color: inherit; text-decoration: none;">
+					<h3>api.measureSimilarity</h3>
+				</a>
+				<p>Takes a target sentence and a list of other sentences to compare with for similarity. Returns an array of pairwise similarity scores.</p>
+				<pre><code class="language-javascript"><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">measureSimilarity</span><span style="color: #000000">: (</span><span style="color: #001080">sentence</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">, </span><span style="color: #001080">compareWith</span><span style="color: #000000">: [</span><span style="color: #267F99">string</span><span style="color: #000000">]) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">result</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">score</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">sentencePair</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#apiresolvecoreferences" id="apiresolvecoreferences" style="color: inherit; text-decoration: none;">
+					<h3>api.resolveCoreferences</h3>
+				</a>
+				<pre><code class="language-javascript"><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">resolveCoreferences</span><span style="color: #000000">: (</span><span style="color: #001080">text</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  coref: {</span>
+<span style="color: #000000">    </span><span style="color: #001080">detected</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">resolvedOutput</span><span style="color: #000000">, </span><span style="color: #008000">// Rewritten input with all the coreferences resolved</span>
+<span style="color: #000000">    clusters: [</span>
+<span style="color: #000000">      {</span>
+<span style="color: #000000">        </span><span style="color: #001080">mention</span><span style="color: #000000">, </span><span style="color: #008000">// token(s) detected as a mention of an entity</span>
+<span style="color: #000000">        </span><span style="color: #001080">references:</span><span style="color: #000000"> [</span>
+<span style="color: #000000">          {</span>
+<span style="color: #000000">            </span><span style="color: #001080">match</span><span style="color: #000000">,</span>
+<span style="color: #000000">            </span><span style="color: #001080">score</span>
+<span style="color: #000000">          }</span>
+<span style="color: #000000">        ]</span>
+<span style="color: #000000">      }</span>
+<span style="color: #000000">    ]</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#apitovec" id="apitovec" style="color: inherit; text-decoration: none;">
+					<h3>api.toVec</h3>
+				</a>
+				<p>Takes an English text as an input and returns vector representation for passage, its sentences and entities if found.</p>
+				<pre><code class="language-javascript"><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">toVec</span><span style="color: #000000">: (</span><span style="color: #001080">text</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">has_vector</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">vector</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">vector_norm</span><span style="color: #000000">,</span>
+<span style="color: #000000">  sentences: {</span>
+<span style="color: #000000">    </span><span style="color: #001080">has_vector</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">vector_norm</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">vector</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">text</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">  entities: {</span>
+<span style="color: #000000">    </span><span style="color: #001080">text</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">has_vector</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">vector_norm</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">vector</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#apigetsentiment" id="apigetsentiment" style="color: inherit; text-decoration: none;">
+					<h3>api.getSentiment</h3>
+				</a>
+				<p>Takes plain English input and returns overall and sentence-level sentiment information. Represents positivity or negativity of the passage as a floating point value.</p>
+				<pre><code class="language-javascript"><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">getSentiment</span><span style="color: #000000">: (</span><span style="color: #001080">text</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">sentiment</span><span style="color: #000000">,</span>
+<span style="color: #000000">  sentences: {</span>
+<span style="color: #000000">    </span><span style="color: #001080">text</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">sentiment</span><span style="color: #000000">,</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#apiparsetext" id="apiparsetext" style="color: inherit; text-decoration: none;">
+					<h3>api.parseText</h3>
+				</a>
+				<p>Takes some plain English input and returns parsed categories, entities and sentences.</p>
+				<pre><code class="language-javascript"><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">parseText</span><span style="color: #000000">: (</span><span style="color: #001080">text</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  categories: {</span>
+<span style="color: #000000">    </span><span style="color: #001080">label</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">score</span>
+<span style="color: #000000">  },</span>
+<span style="color: #000000">  entities: {</span>
+<span style="color: #000000">    </span><span style="color: #001080">label</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">lemma</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">text</span>
+<span style="color: #000000">  },</span>
+<span style="color: #000000">  sentences: {</span>
+<span style="color: #000000">    </span><span style="color: #001080">text</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">label</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">lemma</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#apiextractnumericdata" id="apiextractnumericdata" style="color: inherit; text-decoration: none;">
+					<h3>api.extractNumericData</h3>
+				</a>
+				<p>Takes some text and extracts numeric references as a list of tokens with numeric annotations.</p>
+				<pre><code class="language-javascript"><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">extractNumericData</span><span style="color: #000000">: (</span><span style="color: #001080">text</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  tokens: [</span>
+<span style="color: #000000">    {</span>
+<span style="color: #000000">      </span><span style="color: #001080">numeric_analysis:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">        </span><span style="color: #001080">data</span><span style="color: #000000">, </span><span style="color: #008000">// numeric data</span>
+<span style="color: #000000">        </span><span style="color: #001080">has_numeric</span><span style="color: #000000"> </span><span style="color: #008000">// does this token have numeric info?</span>
+<span style="color: #000000">      }</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">  ]</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#apiparsetexttokens" id="apiparsetexttokens" style="color: inherit; text-decoration: none;">
+					<h3>api.parseTextTokens</h3>
+				</a>
+				<p>Takes some plain English string as input and returns a list of its tokens annotated with linguistic information.</p>
+				<pre><code class="language-javascript"><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">parseTextTokens</span><span style="color: #000000">: (</span><span style="color: #001080">text</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  tokens: [</span>
+<span style="color: #000000">    {</span>
+<span style="color: #000000">      </span><span style="color: #001080">dependency</span><span style="color: #000000">, </span><span style="color: #008000">// Type of dependency: PNP, VB ...</span>
+<span style="color: #000000">      </span><span style="color: #001080">entity_type</span><span style="color: #000000">, </span><span style="color: #008000">// Type of entity: PERSON ...</span>
+<span style="color: #000000">      </span><span style="color: #001080">is_alpha</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">is_currency</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">is_digit</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">is_oov</span><span style="color: #000000">, </span><span style="color: #008000">// is out of vocabulary</span>
+<span style="color: #000000">      </span><span style="color: #001080">is_sent_start</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">is_stop</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">is_title</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">lemma</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">like_email</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">like_num</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">like_url</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">part_of_speech</span><span style="color: #000000">, </span><span style="color: #008000">// verb, noun ...</span>
+<span style="color: #000000">      </span><span style="color: #001080">prob</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">tag</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">text</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">  ]</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#apirendercss" id="apirendercss" style="color: inherit; text-decoration: none;">
+					<h3>api.renderCSS</h3>
+				</a>
+				<p>Takes ssml and corresponding styles as a css string. Returns base64 encoded audio.</p>
+				<pre><code class="language-javascript"><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">renderCSS</span><span style="color: #000000">: (</span><span style="color: #001080">ssml</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">, </span><span style="color: #001080">css</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">result</span><span style="color: #000000"> </span><span style="color: #008000">// base64 encoded audio</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#apispeechtotext" id="apispeechtotext" style="color: inherit; text-decoration: none;">
+					<h3>api.speechToText</h3>
+				</a>
+				<p>Takes base64 encoded audio as input and returns a list of possible transcripts (sorted in order of decreasing confidence).</p>
+				<pre><code class="language-javascript"><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">speechToText</span><span style="color: #000000">: (</span><span style="color: #001080">audio</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  transcript: [</span>
+<span style="color: #000000">    {</span>
+<span style="color: #000000">      </span><span style="color: #001080">text</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">  ]</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#apitexttospeech" id="apitexttospeech" style="color: inherit; text-decoration: none;">
+					<h3>api.textToSpeech</h3>
+				</a>
+				<p>Takes text (<code>string</code>) as input and returns audio encoded as a base64 string.</p>
+				<pre><code class="language-javascript"><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">textToSpeech</span><span style="color: #000000">: (</span><span style="color: #001080">text</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">audio</span><span style="color: #000000"> </span><span style="color: #008000">// base64 encoded audio</span>
+<span style="color: #000000">}</span>
+</code></pre>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -77,2262 +328,18 @@
 					<li class=" ">
 						<a href="modules.html">Exports</a>
 					</li>
+					<li class=" tsd-kind-namespace">
+						<a href="modules/types.html">types</a>
+					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-enum">
-						<a href="enums/aceoutputtype.html" class="tsd-kind-icon">Ace<wbr>Output<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/apps_constraint.html" class="tsd-kind-icon">Apps_<wbr><wbr>Constraint</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/apps_select_column.html" class="tsd-kind-icon">Apps_<wbr><wbr>Select_<wbr><wbr>Column</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/apps_update_column.html" class="tsd-kind-icon">Apps_<wbr><wbr>Update_<wbr><wbr>Column</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/atomic_data_select_column.html" class="tsd-kind-icon">Atomic_<wbr><wbr>Data_<wbr><wbr>Select_<wbr><wbr>Column</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/audioencoding.html" class="tsd-kind-icon">Audio<wbr>Encoding</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/conceptnet_data_constraint.html" class="tsd-kind-icon">Conceptnet_<wbr><wbr>Data_<wbr><wbr>Constraint</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/conceptnet_data_select_column.html" class="tsd-kind-icon">Conceptnet_<wbr><wbr>Data_<wbr><wbr>Select_<wbr><wbr>Column</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/conceptnet_data_update_column.html" class="tsd-kind-icon">Conceptnet_<wbr><wbr>Data_<wbr><wbr>Update_<wbr><wbr>Column</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/conversations_constraint.html" class="tsd-kind-icon">Conversations_<wbr><wbr>Constraint</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/conversations_select_column.html" class="tsd-kind-icon">Conversations_<wbr><wbr>Select_<wbr><wbr>Column</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/conversations_update_column.html" class="tsd-kind-icon">Conversations_<wbr><wbr>Update_<wbr><wbr>Column</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/developers_constraint.html" class="tsd-kind-icon">Developers_<wbr><wbr>Constraint</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/developers_select_column.html" class="tsd-kind-icon">Developers_<wbr><wbr>Select_<wbr><wbr>Column</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/developers_update_column.html" class="tsd-kind-icon">Developers_<wbr><wbr>Update_<wbr><wbr>Column</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/encoding.html" class="tsd-kind-icon">Encoding</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/end_user_conversations_constraint.html" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Constraint</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/end_user_conversations_select_column.html" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Select_<wbr><wbr>Column</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/end_user_conversations_update_column.html" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Update_<wbr><wbr>Column</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/end_users_constraint.html" class="tsd-kind-icon">End_<wbr><wbr>Users_<wbr><wbr>Constraint</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/end_users_select_column.html" class="tsd-kind-icon">End_<wbr><wbr>Users_<wbr><wbr>Select_<wbr><wbr>Column</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/end_users_update_column.html" class="tsd-kind-icon">End_<wbr><wbr>Users_<wbr><wbr>Update_<wbr><wbr>Column</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/events_select_column.html" class="tsd-kind-icon">Events_<wbr><wbr>Select_<wbr><wbr>Column</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/history_select_column.html" class="tsd-kind-icon">History_<wbr><wbr>Select_<wbr><wbr>Column</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/invites_constraint.html" class="tsd-kind-icon">Invites_<wbr><wbr>Constraint</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/invites_select_column.html" class="tsd-kind-icon">Invites_<wbr><wbr>Select_<wbr><wbr>Column</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/invites_update_column.html" class="tsd-kind-icon">Invites_<wbr><wbr>Update_<wbr><wbr>Column</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/kv_scope_enum_constraint.html" class="tsd-kind-icon">Kv_<wbr><wbr>Scope_<wbr><wbr>Enum_<wbr><wbr>Constraint</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/kv_scope_enum_select_column.html" class="tsd-kind-icon">Kv_<wbr><wbr>Scope_<wbr><wbr>Enum_<wbr><wbr>Select_<wbr><wbr>Column</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/kv_scope_enum_update_column.html" class="tsd-kind-icon">Kv_<wbr><wbr>Scope_<wbr><wbr>Enum_<wbr><wbr>Update_<wbr><wbr>Column</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/kv_store_constraint.html" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Constraint</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/kv_store_select_column.html" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Select_<wbr><wbr>Column</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/kv_store_update_column.html" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Update_<wbr><wbr>Column</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/last_utterance_select_column.html" class="tsd-kind-icon">Last_<wbr><wbr>Utterance_<wbr><wbr>Select_<wbr><wbr>Column</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/objects_constraint.html" class="tsd-kind-icon">Objects_<wbr><wbr>Constraint</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/objects_select_column.html" class="tsd-kind-icon">Objects_<wbr><wbr>Select_<wbr><wbr>Column</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/objects_update_column.html" class="tsd-kind-icon">Objects_<wbr><wbr>Update_<wbr><wbr>Column</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/order_by.html" class="tsd-kind-icon">Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/servicename.html" class="tsd-kind-icon">Service<wbr>Name</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/speaker_type_enum_constraint.html" class="tsd-kind-icon">Speaker_<wbr><wbr>Type_<wbr><wbr>Enum_<wbr><wbr>Constraint</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/speaker_type_enum_enum.html" class="tsd-kind-icon">Speaker_<wbr><wbr>Type_<wbr><wbr>Enum_<wbr><wbr>Enum</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/speaker_type_enum_select_column.html" class="tsd-kind-icon">Speaker_<wbr><wbr>Type_<wbr><wbr>Enum_<wbr><wbr>Select_<wbr><wbr>Column</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/speaker_type_enum_update_column.html" class="tsd-kind-icon">Speaker_<wbr><wbr>Type_<wbr><wbr>Enum_<wbr><wbr>Update_<wbr><wbr>Column</a>
-					</li>
-					<li class=" tsd-kind-enum">
-						<a href="enums/utterances_select_column.html" class="tsd-kind-icon">Utterances_<wbr><wbr>Select_<wbr><wbr>Column</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#aceresult" class="tsd-kind-icon">Ace<wbr>Result</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#app_status_comparison_exp" class="tsd-kind-icon">App_<wbr><wbr>Status_<wbr><wbr>Comparison_<wbr><wbr>Exp</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps" class="tsd-kind-icon">Apps</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#appsconversationsargs" class="tsd-kind-icon">Apps<wbr>Conversations<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#appsconversations_aggregateargs" class="tsd-kind-icon">Apps<wbr>Conversations_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#appskv_storeargs" class="tsd-kind-icon">Apps<wbr>Kv_<wbr><wbr>Store<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#appskv_store_aggregateargs" class="tsd-kind-icon">Apps<wbr>Kv_<wbr><wbr>Store_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#appsmetadataargs" class="tsd-kind-icon">Apps<wbr>Metadata<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_aggregate" class="tsd-kind-icon">Apps_<wbr><wbr>Aggregate</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_aggregate_fields" class="tsd-kind-icon">Apps_<wbr><wbr>Aggregate_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_aggregate_fieldscountargs" class="tsd-kind-icon">Apps_<wbr><wbr>Aggregate_<wbr><wbr>Fields<wbr>Count<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_aggregate_order_by" class="tsd-kind-icon">Apps_<wbr><wbr>Aggregate_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_append_input" class="tsd-kind-icon">Apps_<wbr><wbr>Append_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_arr_rel_insert_input" class="tsd-kind-icon">Apps_<wbr><wbr>Arr_<wbr><wbr>Rel_<wbr><wbr>Insert_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_avg_fields" class="tsd-kind-icon">Apps_<wbr><wbr>Avg_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_avg_order_by" class="tsd-kind-icon">Apps_<wbr><wbr>Avg_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_bool_exp" class="tsd-kind-icon">Apps_<wbr><wbr>Bool_<wbr><wbr>Exp</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_delete_at_path_input" class="tsd-kind-icon">Apps_<wbr><wbr>Delete_<wbr><wbr>At_<wbr><wbr>Path_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_delete_elem_input" class="tsd-kind-icon">Apps_<wbr><wbr>Delete_<wbr><wbr>Elem_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_delete_key_input" class="tsd-kind-icon">Apps_<wbr><wbr>Delete_<wbr><wbr>Key_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_inc_input" class="tsd-kind-icon">Apps_<wbr><wbr>Inc_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_insert_input" class="tsd-kind-icon">Apps_<wbr><wbr>Insert_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_max_fields" class="tsd-kind-icon">Apps_<wbr><wbr>Max_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_max_order_by" class="tsd-kind-icon">Apps_<wbr><wbr>Max_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_min_fields" class="tsd-kind-icon">Apps_<wbr><wbr>Min_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_min_order_by" class="tsd-kind-icon">Apps_<wbr><wbr>Min_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_mutation_response" class="tsd-kind-icon">Apps_<wbr><wbr>Mutation_<wbr><wbr>Response</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_obj_rel_insert_input" class="tsd-kind-icon">Apps_<wbr><wbr>Obj_<wbr><wbr>Rel_<wbr><wbr>Insert_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_on_conflict" class="tsd-kind-icon">Apps_<wbr><wbr>On_<wbr><wbr>Conflict</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_order_by" class="tsd-kind-icon">Apps_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_prepend_input" class="tsd-kind-icon">Apps_<wbr><wbr>Prepend_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_set_input" class="tsd-kind-icon">Apps_<wbr><wbr>Set_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_stddev_fields" class="tsd-kind-icon">Apps_<wbr><wbr>Stddev_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_stddev_order_by" class="tsd-kind-icon">Apps_<wbr><wbr>Stddev_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_stddev_pop_fields" class="tsd-kind-icon">Apps_<wbr><wbr>Stddev_<wbr><wbr>Pop_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_stddev_pop_order_by" class="tsd-kind-icon">Apps_<wbr><wbr>Stddev_<wbr><wbr>Pop_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_stddev_samp_fields" class="tsd-kind-icon">Apps_<wbr><wbr>Stddev_<wbr><wbr>Samp_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_stddev_samp_order_by" class="tsd-kind-icon">Apps_<wbr><wbr>Stddev_<wbr><wbr>Samp_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_sum_fields" class="tsd-kind-icon">Apps_<wbr><wbr>Sum_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_sum_order_by" class="tsd-kind-icon">Apps_<wbr><wbr>Sum_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_var_pop_fields" class="tsd-kind-icon">Apps_<wbr><wbr>Var_<wbr><wbr>Pop_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_var_pop_order_by" class="tsd-kind-icon">Apps_<wbr><wbr>Var_<wbr><wbr>Pop_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_var_samp_fields" class="tsd-kind-icon">Apps_<wbr><wbr>Var_<wbr><wbr>Samp_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_var_samp_order_by" class="tsd-kind-icon">Apps_<wbr><wbr>Var_<wbr><wbr>Samp_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_variance_fields" class="tsd-kind-icon">Apps_<wbr><wbr>Variance_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#apps_variance_order_by" class="tsd-kind-icon">Apps_<wbr><wbr>Variance_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#atomic_data" class="tsd-kind-icon">Atomic_<wbr><wbr>Data</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#atomic_data_aggregate" class="tsd-kind-icon">Atomic_<wbr><wbr>Data_<wbr><wbr>Aggregate</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#atomic_data_aggregate_fields" class="tsd-kind-icon">Atomic_<wbr><wbr>Data_<wbr><wbr>Aggregate_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#atomic_data_aggregate_fieldscountargs" class="tsd-kind-icon">Atomic_<wbr><wbr>Data_<wbr><wbr>Aggregate_<wbr><wbr>Fields<wbr>Count<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#atomic_data_bool_exp" class="tsd-kind-icon">Atomic_<wbr><wbr>Data_<wbr><wbr>Bool_<wbr><wbr>Exp</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#atomic_data_insert_input" class="tsd-kind-icon">Atomic_<wbr><wbr>Data_<wbr><wbr>Insert_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#atomic_data_max_fields" class="tsd-kind-icon">Atomic_<wbr><wbr>Data_<wbr><wbr>Max_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#atomic_data_min_fields" class="tsd-kind-icon">Atomic_<wbr><wbr>Data_<wbr><wbr>Min_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#atomic_data_mutation_response" class="tsd-kind-icon">Atomic_<wbr><wbr>Data_<wbr><wbr>Mutation_<wbr><wbr>Response</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#atomic_data_order_by" class="tsd-kind-icon">Atomic_<wbr><wbr>Data_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#atomic_data_set_input" class="tsd-kind-icon">Atomic_<wbr><wbr>Data_<wbr><wbr>Set_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#boolean_comparison_exp" class="tsd-kind-icon">Boolean_<wbr><wbr>Comparison_<wbr><wbr>Exp</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#cat" class="tsd-kind-icon">Cat</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#composeresult" class="tsd-kind-icon">Compose<wbr>Result</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conceptnet_data" class="tsd-kind-icon">Conceptnet_<wbr><wbr>Data</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conceptnet_data_aggregate" class="tsd-kind-icon">Conceptnet_<wbr><wbr>Data_<wbr><wbr>Aggregate</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conceptnet_data_aggregate_fields" class="tsd-kind-icon">Conceptnet_<wbr><wbr>Data_<wbr><wbr>Aggregate_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conceptnet_data_aggregate_fieldscountargs" class="tsd-kind-icon">Conceptnet_<wbr><wbr>Data_<wbr><wbr>Aggregate_<wbr><wbr>Fields<wbr>Count<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conceptnet_data_avg_fields" class="tsd-kind-icon">Conceptnet_<wbr><wbr>Data_<wbr><wbr>Avg_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conceptnet_data_bool_exp" class="tsd-kind-icon">Conceptnet_<wbr><wbr>Data_<wbr><wbr>Bool_<wbr><wbr>Exp</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conceptnet_data_inc_input" class="tsd-kind-icon">Conceptnet_<wbr><wbr>Data_<wbr><wbr>Inc_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conceptnet_data_insert_input" class="tsd-kind-icon">Conceptnet_<wbr><wbr>Data_<wbr><wbr>Insert_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conceptnet_data_max_fields" class="tsd-kind-icon">Conceptnet_<wbr><wbr>Data_<wbr><wbr>Max_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conceptnet_data_min_fields" class="tsd-kind-icon">Conceptnet_<wbr><wbr>Data_<wbr><wbr>Min_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conceptnet_data_mutation_response" class="tsd-kind-icon">Conceptnet_<wbr><wbr>Data_<wbr><wbr>Mutation_<wbr><wbr>Response</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conceptnet_data_on_conflict" class="tsd-kind-icon">Conceptnet_<wbr><wbr>Data_<wbr><wbr>On_<wbr><wbr>Conflict</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conceptnet_data_order_by" class="tsd-kind-icon">Conceptnet_<wbr><wbr>Data_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conceptnet_data_set_input" class="tsd-kind-icon">Conceptnet_<wbr><wbr>Data_<wbr><wbr>Set_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conceptnet_data_stddev_fields" class="tsd-kind-icon">Conceptnet_<wbr><wbr>Data_<wbr><wbr>Stddev_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conceptnet_data_stddev_pop_fields" class="tsd-kind-icon">Conceptnet_<wbr><wbr>Data_<wbr><wbr>Stddev_<wbr><wbr>Pop_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conceptnet_data_stddev_samp_fields" class="tsd-kind-icon">Conceptnet_<wbr><wbr>Data_<wbr><wbr>Stddev_<wbr><wbr>Samp_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conceptnet_data_sum_fields" class="tsd-kind-icon">Conceptnet_<wbr><wbr>Data_<wbr><wbr>Sum_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conceptnet_data_var_pop_fields" class="tsd-kind-icon">Conceptnet_<wbr><wbr>Data_<wbr><wbr>Var_<wbr><wbr>Pop_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conceptnet_data_var_samp_fields" class="tsd-kind-icon">Conceptnet_<wbr><wbr>Data_<wbr><wbr>Var_<wbr><wbr>Samp_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conceptnet_data_variance_fields" class="tsd-kind-icon">Conceptnet_<wbr><wbr>Data_<wbr><wbr>Variance_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conceptnet_search_relations_args" class="tsd-kind-icon">Conceptnet_<wbr><wbr>Search_<wbr><wbr>Relations_<wbr><wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#container" class="tsd-kind-icon">Container</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#contextobject" class="tsd-kind-icon">Context<wbr>Object</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#contextresult" class="tsd-kind-icon">Context<wbr>Result</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations" class="tsd-kind-icon">Conversations</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversationsend_user_conversationsargs" class="tsd-kind-icon">Conversations<wbr>End_<wbr><wbr>User_<wbr><wbr>Conversations<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversationsend_user_conversations_aggregateargs" class="tsd-kind-icon">Conversations<wbr>End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversationskv_storeargs" class="tsd-kind-icon">Conversations<wbr>Kv_<wbr><wbr>Store<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversationskv_store_aggregateargs" class="tsd-kind-icon">Conversations<wbr>Kv_<wbr><wbr>Store_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversationsmetadataargs" class="tsd-kind-icon">Conversations<wbr>Metadata<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversationsutterancesargs" class="tsd-kind-icon">Conversations<wbr>Utterances<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversationsutterances_aggregateargs" class="tsd-kind-icon">Conversations<wbr>Utterances_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_aggregate" class="tsd-kind-icon">Conversations_<wbr><wbr>Aggregate</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_aggregate_fields" class="tsd-kind-icon">Conversations_<wbr><wbr>Aggregate_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_aggregate_fieldscountargs" class="tsd-kind-icon">Conversations_<wbr><wbr>Aggregate_<wbr><wbr>Fields<wbr>Count<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_aggregate_order_by" class="tsd-kind-icon">Conversations_<wbr><wbr>Aggregate_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_append_input" class="tsd-kind-icon">Conversations_<wbr><wbr>Append_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_arr_rel_insert_input" class="tsd-kind-icon">Conversations_<wbr><wbr>Arr_<wbr><wbr>Rel_<wbr><wbr>Insert_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_avg_fields" class="tsd-kind-icon">Conversations_<wbr><wbr>Avg_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_avg_order_by" class="tsd-kind-icon">Conversations_<wbr><wbr>Avg_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_bool_exp" class="tsd-kind-icon">Conversations_<wbr><wbr>Bool_<wbr><wbr>Exp</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_delete_at_path_input" class="tsd-kind-icon">Conversations_<wbr><wbr>Delete_<wbr><wbr>At_<wbr><wbr>Path_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_delete_elem_input" class="tsd-kind-icon">Conversations_<wbr><wbr>Delete_<wbr><wbr>Elem_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_delete_key_input" class="tsd-kind-icon">Conversations_<wbr><wbr>Delete_<wbr><wbr>Key_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_inc_input" class="tsd-kind-icon">Conversations_<wbr><wbr>Inc_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_insert_input" class="tsd-kind-icon">Conversations_<wbr><wbr>Insert_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_max_fields" class="tsd-kind-icon">Conversations_<wbr><wbr>Max_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_max_order_by" class="tsd-kind-icon">Conversations_<wbr><wbr>Max_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_min_fields" class="tsd-kind-icon">Conversations_<wbr><wbr>Min_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_min_order_by" class="tsd-kind-icon">Conversations_<wbr><wbr>Min_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_mutation_response" class="tsd-kind-icon">Conversations_<wbr><wbr>Mutation_<wbr><wbr>Response</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_obj_rel_insert_input" class="tsd-kind-icon">Conversations_<wbr><wbr>Obj_<wbr><wbr>Rel_<wbr><wbr>Insert_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_on_conflict" class="tsd-kind-icon">Conversations_<wbr><wbr>On_<wbr><wbr>Conflict</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_order_by" class="tsd-kind-icon">Conversations_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_prepend_input" class="tsd-kind-icon">Conversations_<wbr><wbr>Prepend_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_set_input" class="tsd-kind-icon">Conversations_<wbr><wbr>Set_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_stddev_fields" class="tsd-kind-icon">Conversations_<wbr><wbr>Stddev_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_stddev_order_by" class="tsd-kind-icon">Conversations_<wbr><wbr>Stddev_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_stddev_pop_fields" class="tsd-kind-icon">Conversations_<wbr><wbr>Stddev_<wbr><wbr>Pop_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_stddev_pop_order_by" class="tsd-kind-icon">Conversations_<wbr><wbr>Stddev_<wbr><wbr>Pop_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_stddev_samp_fields" class="tsd-kind-icon">Conversations_<wbr><wbr>Stddev_<wbr><wbr>Samp_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_stddev_samp_order_by" class="tsd-kind-icon">Conversations_<wbr><wbr>Stddev_<wbr><wbr>Samp_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_sum_fields" class="tsd-kind-icon">Conversations_<wbr><wbr>Sum_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_sum_order_by" class="tsd-kind-icon">Conversations_<wbr><wbr>Sum_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_var_pop_fields" class="tsd-kind-icon">Conversations_<wbr><wbr>Var_<wbr><wbr>Pop_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_var_pop_order_by" class="tsd-kind-icon">Conversations_<wbr><wbr>Var_<wbr><wbr>Pop_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_var_samp_fields" class="tsd-kind-icon">Conversations_<wbr><wbr>Var_<wbr><wbr>Samp_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_var_samp_order_by" class="tsd-kind-icon">Conversations_<wbr><wbr>Var_<wbr><wbr>Samp_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_variance_fields" class="tsd-kind-icon">Conversations_<wbr><wbr>Variance_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#conversations_variance_order_by" class="tsd-kind-icon">Conversations_<wbr><wbr>Variance_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#corefcluster" class="tsd-kind-icon">Coref<wbr>Cluster</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#corefscores" class="tsd-kind-icon">Coref<wbr>Scores</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developers" class="tsd-kind-icon">Developers</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developersappsargs" class="tsd-kind-icon">Developers<wbr>Apps<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developersapps_aggregateargs" class="tsd-kind-icon">Developers<wbr>Apps_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developerseventsargs" class="tsd-kind-icon">Developers<wbr>Events<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developersevents_aggregateargs" class="tsd-kind-icon">Developers<wbr>Events_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developersinvitesargs" class="tsd-kind-icon">Developers<wbr>Invites<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developersinvites_aggregateargs" class="tsd-kind-icon">Developers<wbr>Invites_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developerskv_storesargs" class="tsd-kind-icon">Developers<wbr>Kv_<wbr><wbr>Stores<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developerskv_stores_aggregateargs" class="tsd-kind-icon">Developers<wbr>Kv_<wbr><wbr>Stores_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developersmetadataargs" class="tsd-kind-icon">Developers<wbr>Metadata<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developers_aggregate" class="tsd-kind-icon">Developers_<wbr><wbr>Aggregate</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developers_aggregate_fields" class="tsd-kind-icon">Developers_<wbr><wbr>Aggregate_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developers_aggregate_fieldscountargs" class="tsd-kind-icon">Developers_<wbr><wbr>Aggregate_<wbr><wbr>Fields<wbr>Count<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developers_append_input" class="tsd-kind-icon">Developers_<wbr><wbr>Append_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developers_avg_fields" class="tsd-kind-icon">Developers_<wbr><wbr>Avg_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developers_bool_exp" class="tsd-kind-icon">Developers_<wbr><wbr>Bool_<wbr><wbr>Exp</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developers_delete_at_path_input" class="tsd-kind-icon">Developers_<wbr><wbr>Delete_<wbr><wbr>At_<wbr><wbr>Path_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developers_delete_elem_input" class="tsd-kind-icon">Developers_<wbr><wbr>Delete_<wbr><wbr>Elem_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developers_delete_key_input" class="tsd-kind-icon">Developers_<wbr><wbr>Delete_<wbr><wbr>Key_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developers_inc_input" class="tsd-kind-icon">Developers_<wbr><wbr>Inc_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developers_insert_input" class="tsd-kind-icon">Developers_<wbr><wbr>Insert_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developers_max_fields" class="tsd-kind-icon">Developers_<wbr><wbr>Max_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developers_min_fields" class="tsd-kind-icon">Developers_<wbr><wbr>Min_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developers_mutation_response" class="tsd-kind-icon">Developers_<wbr><wbr>Mutation_<wbr><wbr>Response</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developers_obj_rel_insert_input" class="tsd-kind-icon">Developers_<wbr><wbr>Obj_<wbr><wbr>Rel_<wbr><wbr>Insert_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developers_on_conflict" class="tsd-kind-icon">Developers_<wbr><wbr>On_<wbr><wbr>Conflict</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developers_order_by" class="tsd-kind-icon">Developers_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developers_prepend_input" class="tsd-kind-icon">Developers_<wbr><wbr>Prepend_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developers_set_input" class="tsd-kind-icon">Developers_<wbr><wbr>Set_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developers_stddev_fields" class="tsd-kind-icon">Developers_<wbr><wbr>Stddev_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developers_stddev_pop_fields" class="tsd-kind-icon">Developers_<wbr><wbr>Stddev_<wbr><wbr>Pop_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developers_stddev_samp_fields" class="tsd-kind-icon">Developers_<wbr><wbr>Stddev_<wbr><wbr>Samp_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developers_sum_fields" class="tsd-kind-icon">Developers_<wbr><wbr>Sum_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developers_var_pop_fields" class="tsd-kind-icon">Developers_<wbr><wbr>Var_<wbr><wbr>Pop_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developers_var_samp_fields" class="tsd-kind-icon">Developers_<wbr><wbr>Var_<wbr><wbr>Samp_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#developers_variance_fields" class="tsd-kind-icon">Developers_<wbr><wbr>Variance_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#dialogalternative" class="tsd-kind-icon">Dialog<wbr>Alternative</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#docextension" class="tsd-kind-icon">Doc<wbr>Extension</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations_aggregate" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Aggregate</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations_aggregate_fields" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Aggregate_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations_aggregate_fieldscountargs" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Aggregate_<wbr><wbr>Fields<wbr>Count<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations_aggregate_order_by" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Aggregate_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations_arr_rel_insert_input" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Arr_<wbr><wbr>Rel_<wbr><wbr>Insert_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations_avg_fields" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Avg_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations_avg_order_by" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Avg_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations_bool_exp" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Bool_<wbr><wbr>Exp</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations_inc_input" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Inc_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations_insert_input" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Insert_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations_max_fields" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Max_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations_max_order_by" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Max_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations_min_fields" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Min_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations_min_order_by" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Min_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations_mutation_response" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Mutation_<wbr><wbr>Response</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations_obj_rel_insert_input" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Obj_<wbr><wbr>Rel_<wbr><wbr>Insert_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations_on_conflict" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>On_<wbr><wbr>Conflict</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations_order_by" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations_pk_columns_input" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Pk_<wbr><wbr>Columns_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations_set_input" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Set_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations_stddev_fields" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Stddev_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations_stddev_order_by" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Stddev_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations_stddev_pop_fields" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Stddev_<wbr><wbr>Pop_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations_stddev_pop_order_by" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Stddev_<wbr><wbr>Pop_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations_stddev_samp_fields" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Stddev_<wbr><wbr>Samp_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations_stddev_samp_order_by" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Stddev_<wbr><wbr>Samp_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations_sum_fields" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Sum_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations_sum_order_by" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Sum_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations_var_pop_fields" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Var_<wbr><wbr>Pop_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations_var_pop_order_by" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Var_<wbr><wbr>Pop_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations_var_samp_fields" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Var_<wbr><wbr>Samp_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations_var_samp_order_by" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Var_<wbr><wbr>Samp_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations_variance_fields" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Variance_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_user_conversations_variance_order_by" class="tsd-kind-icon">End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Variance_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_users" class="tsd-kind-icon">End_<wbr><wbr>Users</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_usersconversationsargs" class="tsd-kind-icon">End_<wbr><wbr>Users<wbr>Conversations<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_usersconversations_aggregateargs" class="tsd-kind-icon">End_<wbr><wbr>Users<wbr>Conversations_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_userskv_storeargs" class="tsd-kind-icon">End_<wbr><wbr>Users<wbr>Kv_<wbr><wbr>Store<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_userskv_store_aggregateargs" class="tsd-kind-icon">End_<wbr><wbr>Users<wbr>Kv_<wbr><wbr>Store_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_usersmetadataargs" class="tsd-kind-icon">End_<wbr><wbr>Users<wbr>Metadata<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_usersutterancesargs" class="tsd-kind-icon">End_<wbr><wbr>Users<wbr>Utterances<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_usersutterances_aggregateargs" class="tsd-kind-icon">End_<wbr><wbr>Users<wbr>Utterances_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_users_aggregate" class="tsd-kind-icon">End_<wbr><wbr>Users_<wbr><wbr>Aggregate</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_users_aggregate_fields" class="tsd-kind-icon">End_<wbr><wbr>Users_<wbr><wbr>Aggregate_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_users_aggregate_fieldscountargs" class="tsd-kind-icon">End_<wbr><wbr>Users_<wbr><wbr>Aggregate_<wbr><wbr>Fields<wbr>Count<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_users_append_input" class="tsd-kind-icon">End_<wbr><wbr>Users_<wbr><wbr>Append_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_users_avg_fields" class="tsd-kind-icon">End_<wbr><wbr>Users_<wbr><wbr>Avg_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_users_bool_exp" class="tsd-kind-icon">End_<wbr><wbr>Users_<wbr><wbr>Bool_<wbr><wbr>Exp</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_users_delete_at_path_input" class="tsd-kind-icon">End_<wbr><wbr>Users_<wbr><wbr>Delete_<wbr><wbr>At_<wbr><wbr>Path_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_users_delete_elem_input" class="tsd-kind-icon">End_<wbr><wbr>Users_<wbr><wbr>Delete_<wbr><wbr>Elem_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_users_delete_key_input" class="tsd-kind-icon">End_<wbr><wbr>Users_<wbr><wbr>Delete_<wbr><wbr>Key_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_users_inc_input" class="tsd-kind-icon">End_<wbr><wbr>Users_<wbr><wbr>Inc_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_users_insert_input" class="tsd-kind-icon">End_<wbr><wbr>Users_<wbr><wbr>Insert_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_users_max_fields" class="tsd-kind-icon">End_<wbr><wbr>Users_<wbr><wbr>Max_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_users_min_fields" class="tsd-kind-icon">End_<wbr><wbr>Users_<wbr><wbr>Min_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_users_mutation_response" class="tsd-kind-icon">End_<wbr><wbr>Users_<wbr><wbr>Mutation_<wbr><wbr>Response</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_users_obj_rel_insert_input" class="tsd-kind-icon">End_<wbr><wbr>Users_<wbr><wbr>Obj_<wbr><wbr>Rel_<wbr><wbr>Insert_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_users_on_conflict" class="tsd-kind-icon">End_<wbr><wbr>Users_<wbr><wbr>On_<wbr><wbr>Conflict</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_users_order_by" class="tsd-kind-icon">End_<wbr><wbr>Users_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_users_prepend_input" class="tsd-kind-icon">End_<wbr><wbr>Users_<wbr><wbr>Prepend_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_users_set_input" class="tsd-kind-icon">End_<wbr><wbr>Users_<wbr><wbr>Set_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_users_stddev_fields" class="tsd-kind-icon">End_<wbr><wbr>Users_<wbr><wbr>Stddev_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_users_stddev_pop_fields" class="tsd-kind-icon">End_<wbr><wbr>Users_<wbr><wbr>Stddev_<wbr><wbr>Pop_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_users_stddev_samp_fields" class="tsd-kind-icon">End_<wbr><wbr>Users_<wbr><wbr>Stddev_<wbr><wbr>Samp_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_users_sum_fields" class="tsd-kind-icon">End_<wbr><wbr>Users_<wbr><wbr>Sum_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_users_var_pop_fields" class="tsd-kind-icon">End_<wbr><wbr>Users_<wbr><wbr>Var_<wbr><wbr>Pop_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_users_var_samp_fields" class="tsd-kind-icon">End_<wbr><wbr>Users_<wbr><wbr>Var_<wbr><wbr>Samp_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#end_users_variance_fields" class="tsd-kind-icon">End_<wbr><wbr>Users_<wbr><wbr>Variance_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#events" class="tsd-kind-icon">Events</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#eventschanged_fieldsargs" class="tsd-kind-icon">Events<wbr>Changed_<wbr><wbr>Fields<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#events_aggregate" class="tsd-kind-icon">Events_<wbr><wbr>Aggregate</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#events_aggregate_fields" class="tsd-kind-icon">Events_<wbr><wbr>Aggregate_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#events_aggregate_fieldscountargs" class="tsd-kind-icon">Events_<wbr><wbr>Aggregate_<wbr><wbr>Fields<wbr>Count<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#events_aggregate_order_by" class="tsd-kind-icon">Events_<wbr><wbr>Aggregate_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#events_append_input" class="tsd-kind-icon">Events_<wbr><wbr>Append_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#events_arr_rel_insert_input" class="tsd-kind-icon">Events_<wbr><wbr>Arr_<wbr><wbr>Rel_<wbr><wbr>Insert_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#events_bool_exp" class="tsd-kind-icon">Events_<wbr><wbr>Bool_<wbr><wbr>Exp</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#events_delete_at_path_input" class="tsd-kind-icon">Events_<wbr><wbr>Delete_<wbr><wbr>At_<wbr><wbr>Path_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#events_delete_elem_input" class="tsd-kind-icon">Events_<wbr><wbr>Delete_<wbr><wbr>Elem_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#events_delete_key_input" class="tsd-kind-icon">Events_<wbr><wbr>Delete_<wbr><wbr>Key_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#events_insert_input" class="tsd-kind-icon">Events_<wbr><wbr>Insert_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#events_max_fields" class="tsd-kind-icon">Events_<wbr><wbr>Max_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#events_max_order_by" class="tsd-kind-icon">Events_<wbr><wbr>Max_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#events_min_fields" class="tsd-kind-icon">Events_<wbr><wbr>Min_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#events_min_order_by" class="tsd-kind-icon">Events_<wbr><wbr>Min_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#events_mutation_response" class="tsd-kind-icon">Events_<wbr><wbr>Mutation_<wbr><wbr>Response</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#events_order_by" class="tsd-kind-icon">Events_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#events_prepend_input" class="tsd-kind-icon">Events_<wbr><wbr>Prepend_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#events_set_input" class="tsd-kind-icon">Events_<wbr><wbr>Set_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-						<a href="modules.html#exact" class="tsd-kind-icon">Exact</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#extractnumericdataquery" class="tsd-kind-icon">Extract<wbr>Numeric<wbr>Data<wbr>Query</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#extractnumericdataqueryvariables" class="tsd-kind-icon">Extract<wbr>Numeric<wbr>Data<wbr>Query<wbr>Variables</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#getsentimentquery" class="tsd-kind-icon">Get<wbr>Sentiment<wbr>Query</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#getsentimentqueryvariables" class="tsd-kind-icon">Get<wbr>Sentiment<wbr>Query<wbr>Variables</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#history" class="tsd-kind-icon">History</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#historyutterancesargs" class="tsd-kind-icon">History<wbr>Utterances<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#history_aggregate" class="tsd-kind-icon">History_<wbr><wbr>Aggregate</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#history_aggregate_fields" class="tsd-kind-icon">History_<wbr><wbr>Aggregate_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#history_aggregate_fieldscountargs" class="tsd-kind-icon">History_<wbr><wbr>Aggregate_<wbr><wbr>Fields<wbr>Count<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#history_avg_fields" class="tsd-kind-icon">History_<wbr><wbr>Avg_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#history_bool_exp" class="tsd-kind-icon">History_<wbr><wbr>Bool_<wbr><wbr>Exp</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#history_max_fields" class="tsd-kind-icon">History_<wbr><wbr>Max_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#history_min_fields" class="tsd-kind-icon">History_<wbr><wbr>Min_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#history_order_by" class="tsd-kind-icon">History_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#history_stddev_fields" class="tsd-kind-icon">History_<wbr><wbr>Stddev_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#history_stddev_pop_fields" class="tsd-kind-icon">History_<wbr><wbr>Stddev_<wbr><wbr>Pop_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#history_stddev_samp_fields" class="tsd-kind-icon">History_<wbr><wbr>Stddev_<wbr><wbr>Samp_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#history_sum_fields" class="tsd-kind-icon">History_<wbr><wbr>Sum_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#history_var_pop_fields" class="tsd-kind-icon">History_<wbr><wbr>Var_<wbr><wbr>Pop_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#history_var_samp_fields" class="tsd-kind-icon">History_<wbr><wbr>Var_<wbr><wbr>Samp_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#history_variance_fields" class="tsd-kind-icon">History_<wbr><wbr>Variance_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#inputpipe" class="tsd-kind-icon">Input<wbr>Pipe</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#int_comparison_exp" class="tsd-kind-icon">Int_<wbr><wbr>Comparison_<wbr><wbr>Exp</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites" class="tsd-kind-icon">Invites</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invitesmetadataargs" class="tsd-kind-icon">Invites<wbr>Metadata<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_aggregate" class="tsd-kind-icon">Invites_<wbr><wbr>Aggregate</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_aggregate_fields" class="tsd-kind-icon">Invites_<wbr><wbr>Aggregate_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_aggregate_fieldscountargs" class="tsd-kind-icon">Invites_<wbr><wbr>Aggregate_<wbr><wbr>Fields<wbr>Count<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_aggregate_order_by" class="tsd-kind-icon">Invites_<wbr><wbr>Aggregate_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_append_input" class="tsd-kind-icon">Invites_<wbr><wbr>Append_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_arr_rel_insert_input" class="tsd-kind-icon">Invites_<wbr><wbr>Arr_<wbr><wbr>Rel_<wbr><wbr>Insert_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_avg_fields" class="tsd-kind-icon">Invites_<wbr><wbr>Avg_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_avg_order_by" class="tsd-kind-icon">Invites_<wbr><wbr>Avg_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_bool_exp" class="tsd-kind-icon">Invites_<wbr><wbr>Bool_<wbr><wbr>Exp</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_delete_at_path_input" class="tsd-kind-icon">Invites_<wbr><wbr>Delete_<wbr><wbr>At_<wbr><wbr>Path_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_delete_elem_input" class="tsd-kind-icon">Invites_<wbr><wbr>Delete_<wbr><wbr>Elem_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_delete_key_input" class="tsd-kind-icon">Invites_<wbr><wbr>Delete_<wbr><wbr>Key_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_inc_input" class="tsd-kind-icon">Invites_<wbr><wbr>Inc_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_insert_input" class="tsd-kind-icon">Invites_<wbr><wbr>Insert_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_max_fields" class="tsd-kind-icon">Invites_<wbr><wbr>Max_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_max_order_by" class="tsd-kind-icon">Invites_<wbr><wbr>Max_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_min_fields" class="tsd-kind-icon">Invites_<wbr><wbr>Min_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_min_order_by" class="tsd-kind-icon">Invites_<wbr><wbr>Min_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_mutation_response" class="tsd-kind-icon">Invites_<wbr><wbr>Mutation_<wbr><wbr>Response</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_on_conflict" class="tsd-kind-icon">Invites_<wbr><wbr>On_<wbr><wbr>Conflict</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_order_by" class="tsd-kind-icon">Invites_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_prepend_input" class="tsd-kind-icon">Invites_<wbr><wbr>Prepend_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_set_input" class="tsd-kind-icon">Invites_<wbr><wbr>Set_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_stddev_fields" class="tsd-kind-icon">Invites_<wbr><wbr>Stddev_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_stddev_order_by" class="tsd-kind-icon">Invites_<wbr><wbr>Stddev_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_stddev_pop_fields" class="tsd-kind-icon">Invites_<wbr><wbr>Stddev_<wbr><wbr>Pop_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_stddev_pop_order_by" class="tsd-kind-icon">Invites_<wbr><wbr>Stddev_<wbr><wbr>Pop_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_stddev_samp_fields" class="tsd-kind-icon">Invites_<wbr><wbr>Stddev_<wbr><wbr>Samp_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_stddev_samp_order_by" class="tsd-kind-icon">Invites_<wbr><wbr>Stddev_<wbr><wbr>Samp_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_sum_fields" class="tsd-kind-icon">Invites_<wbr><wbr>Sum_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_sum_order_by" class="tsd-kind-icon">Invites_<wbr><wbr>Sum_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_var_pop_fields" class="tsd-kind-icon">Invites_<wbr><wbr>Var_<wbr><wbr>Pop_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_var_pop_order_by" class="tsd-kind-icon">Invites_<wbr><wbr>Var_<wbr><wbr>Pop_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_var_samp_fields" class="tsd-kind-icon">Invites_<wbr><wbr>Var_<wbr><wbr>Samp_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_var_samp_order_by" class="tsd-kind-icon">Invites_<wbr><wbr>Var_<wbr><wbr>Samp_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_variance_fields" class="tsd-kind-icon">Invites_<wbr><wbr>Variance_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#invites_variance_order_by" class="tsd-kind-icon">Invites_<wbr><wbr>Variance_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#jsonb_comparison_exp" class="tsd-kind-icon">Jsonb_<wbr><wbr>Comparison_<wbr><wbr>Exp</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_scope_enum" class="tsd-kind-icon">Kv_<wbr><wbr>Scope_<wbr><wbr>Enum</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_scope_enum_aggregate" class="tsd-kind-icon">Kv_<wbr><wbr>Scope_<wbr><wbr>Enum_<wbr><wbr>Aggregate</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_scope_enum_aggregate_fields" class="tsd-kind-icon">Kv_<wbr><wbr>Scope_<wbr><wbr>Enum_<wbr><wbr>Aggregate_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_scope_enum_aggregate_fieldscountargs" class="tsd-kind-icon">Kv_<wbr><wbr>Scope_<wbr><wbr>Enum_<wbr><wbr>Aggregate_<wbr><wbr>Fields<wbr>Count<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_scope_enum_bool_exp" class="tsd-kind-icon">Kv_<wbr><wbr>Scope_<wbr><wbr>Enum_<wbr><wbr>Bool_<wbr><wbr>Exp</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_scope_enum_insert_input" class="tsd-kind-icon">Kv_<wbr><wbr>Scope_<wbr><wbr>Enum_<wbr><wbr>Insert_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_scope_enum_max_fields" class="tsd-kind-icon">Kv_<wbr><wbr>Scope_<wbr><wbr>Enum_<wbr><wbr>Max_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_scope_enum_min_fields" class="tsd-kind-icon">Kv_<wbr><wbr>Scope_<wbr><wbr>Enum_<wbr><wbr>Min_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_scope_enum_mutation_response" class="tsd-kind-icon">Kv_<wbr><wbr>Scope_<wbr><wbr>Enum_<wbr><wbr>Mutation_<wbr><wbr>Response</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_scope_enum_on_conflict" class="tsd-kind-icon">Kv_<wbr><wbr>Scope_<wbr><wbr>Enum_<wbr><wbr>On_<wbr><wbr>Conflict</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_scope_enum_order_by" class="tsd-kind-icon">Kv_<wbr><wbr>Scope_<wbr><wbr>Enum_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_scope_enum_pk_columns_input" class="tsd-kind-icon">Kv_<wbr><wbr>Scope_<wbr><wbr>Enum_<wbr><wbr>Pk_<wbr><wbr>Columns_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_scope_enum_set_input" class="tsd-kind-icon">Kv_<wbr><wbr>Scope_<wbr><wbr>Enum_<wbr><wbr>Set_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store" class="tsd-kind-icon">Kv_<wbr><wbr>Store</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_storemetadataargs" class="tsd-kind-icon">Kv_<wbr><wbr>Store<wbr>Metadata<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_storevalueargs" class="tsd-kind-icon">Kv_<wbr><wbr>Store<wbr>Value<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_aggregate" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Aggregate</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_aggregate_fields" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Aggregate_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_aggregate_fieldscountargs" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Aggregate_<wbr><wbr>Fields<wbr>Count<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_aggregate_order_by" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Aggregate_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_append_input" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Append_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_arr_rel_insert_input" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Arr_<wbr><wbr>Rel_<wbr><wbr>Insert_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_avg_fields" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Avg_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_avg_order_by" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Avg_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_bool_exp" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Bool_<wbr><wbr>Exp</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_delete_at_path_input" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Delete_<wbr><wbr>At_<wbr><wbr>Path_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_delete_elem_input" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Delete_<wbr><wbr>Elem_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_delete_key_input" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Delete_<wbr><wbr>Key_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_inc_input" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Inc_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_insert_input" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Insert_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_max_fields" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Max_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_max_order_by" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Max_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_min_fields" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Min_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_min_order_by" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Min_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_mutation_response" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Mutation_<wbr><wbr>Response</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_on_conflict" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>On_<wbr><wbr>Conflict</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_order_by" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_pk_columns_input" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Pk_<wbr><wbr>Columns_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_prepend_input" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Prepend_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_set_input" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Set_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_stddev_fields" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Stddev_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_stddev_order_by" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Stddev_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_stddev_pop_fields" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Stddev_<wbr><wbr>Pop_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_stddev_pop_order_by" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Stddev_<wbr><wbr>Pop_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_stddev_samp_fields" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Stddev_<wbr><wbr>Samp_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_stddev_samp_order_by" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Stddev_<wbr><wbr>Samp_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_sum_fields" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Sum_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_sum_order_by" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Sum_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_var_pop_fields" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Var_<wbr><wbr>Pop_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_var_pop_order_by" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Var_<wbr><wbr>Pop_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_var_samp_fields" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Var_<wbr><wbr>Samp_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_var_samp_order_by" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Var_<wbr><wbr>Samp_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_variance_fields" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Variance_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#kv_store_variance_order_by" class="tsd-kind-icon">Kv_<wbr><wbr>Store_<wbr><wbr>Variance_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#last_utterance" class="tsd-kind-icon">Last_<wbr><wbr>Utterance</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#last_utterance_aggregate" class="tsd-kind-icon">Last_<wbr><wbr>Utterance_<wbr><wbr>Aggregate</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#last_utterance_aggregate_fields" class="tsd-kind-icon">Last_<wbr><wbr>Utterance_<wbr><wbr>Aggregate_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#last_utterance_aggregate_fieldscountargs" class="tsd-kind-icon">Last_<wbr><wbr>Utterance_<wbr><wbr>Aggregate_<wbr><wbr>Fields<wbr>Count<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#last_utterance_avg_fields" class="tsd-kind-icon">Last_<wbr><wbr>Utterance_<wbr><wbr>Avg_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#last_utterance_bool_exp" class="tsd-kind-icon">Last_<wbr><wbr>Utterance_<wbr><wbr>Bool_<wbr><wbr>Exp</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#last_utterance_max_fields" class="tsd-kind-icon">Last_<wbr><wbr>Utterance_<wbr><wbr>Max_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#last_utterance_min_fields" class="tsd-kind-icon">Last_<wbr><wbr>Utterance_<wbr><wbr>Min_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#last_utterance_order_by" class="tsd-kind-icon">Last_<wbr><wbr>Utterance_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#last_utterance_stddev_fields" class="tsd-kind-icon">Last_<wbr><wbr>Utterance_<wbr><wbr>Stddev_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#last_utterance_stddev_pop_fields" class="tsd-kind-icon">Last_<wbr><wbr>Utterance_<wbr><wbr>Stddev_<wbr><wbr>Pop_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#last_utterance_stddev_samp_fields" class="tsd-kind-icon">Last_<wbr><wbr>Utterance_<wbr><wbr>Stddev_<wbr><wbr>Samp_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#last_utterance_sum_fields" class="tsd-kind-icon">Last_<wbr><wbr>Utterance_<wbr><wbr>Sum_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#last_utterance_var_pop_fields" class="tsd-kind-icon">Last_<wbr><wbr>Utterance_<wbr><wbr>Var_<wbr><wbr>Pop_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#last_utterance_var_samp_fields" class="tsd-kind-icon">Last_<wbr><wbr>Utterance_<wbr><wbr>Var_<wbr><wbr>Samp_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#last_utterance_variance_fields" class="tsd-kind-icon">Last_<wbr><wbr>Utterance_<wbr><wbr>Variance_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-						<a href="modules.html#makemaybe" class="tsd-kind-icon">Make<wbr>Maybe</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-						<a href="modules.html#makeoptional" class="tsd-kind-icon">Make<wbr>Optional</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#matchintentoutput" class="tsd-kind-icon">Match<wbr>Intent<wbr>Output</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#matchintentquery" class="tsd-kind-icon">Match<wbr>Intent<wbr>Query</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#matchintentqueryvariables" class="tsd-kind-icon">Match<wbr>Intent<wbr>Query<wbr>Variables</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-						<a href="modules.html#maybe" class="tsd-kind-icon">Maybe</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#measuresimilarityquery" class="tsd-kind-icon">Measure<wbr>Similarity<wbr>Query</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#measuresimilarityqueryvariables" class="tsd-kind-icon">Measure<wbr>Similarity<wbr>Query<wbr>Variables</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_root" class="tsd-kind-icon">Mutation_<wbr><wbr>Root</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootdelete_appsargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Delete_<wbr><wbr>Apps<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootdelete_atomic_dataargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Delete_<wbr><wbr>Atomic_<wbr><wbr>Data<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootdelete_conceptnet_dataargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Delete_<wbr><wbr>Conceptnet_<wbr><wbr>Data<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootdelete_conversationsargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Delete_<wbr><wbr>Conversations<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootdelete_developersargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Delete_<wbr><wbr>Developers<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootdelete_end_user_conversationsargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Delete_<wbr><wbr>End_<wbr><wbr>User_<wbr><wbr>Conversations<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootdelete_end_user_conversations_by_pkargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Delete_<wbr><wbr>End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>By_<wbr><wbr>PkArgs</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootdelete_end_usersargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Delete_<wbr><wbr>End_<wbr><wbr>Users<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootdelete_eventsargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Delete_<wbr><wbr>Events<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootdelete_invitesargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Delete_<wbr><wbr>Invites<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootdelete_kv_scope_enumargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Delete_<wbr><wbr>Kv_<wbr><wbr>Scope_<wbr><wbr>Enum<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootdelete_kv_scope_enum_by_pkargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Delete_<wbr><wbr>Kv_<wbr><wbr>Scope_<wbr><wbr>Enum_<wbr><wbr>By_<wbr><wbr>PkArgs</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootdelete_kv_storeargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Delete_<wbr><wbr>Kv_<wbr><wbr>Store<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootdelete_kv_store_by_pkargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Delete_<wbr><wbr>Kv_<wbr><wbr>Store_<wbr><wbr>By_<wbr><wbr>PkArgs</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootdelete_objectsargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Delete_<wbr><wbr>Objects<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootdelete_objects_by_pkargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Delete_<wbr><wbr>Objects_<wbr><wbr>By_<wbr><wbr>PkArgs</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootdelete_speaker_type_enumargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Delete_<wbr><wbr>Speaker_<wbr><wbr>Type_<wbr><wbr>Enum<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootdelete_speaker_type_enum_by_pkargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Delete_<wbr><wbr>Speaker_<wbr><wbr>Type_<wbr><wbr>Enum_<wbr><wbr>By_<wbr><wbr>PkArgs</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootdelete_utterancesargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Delete_<wbr><wbr>Utterances<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootinsert_appsargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Insert_<wbr><wbr>Apps<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootinsert_apps_oneargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Insert_<wbr><wbr>Apps_<wbr><wbr>One<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootinsert_atomic_dataargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Insert_<wbr><wbr>Atomic_<wbr><wbr>Data<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootinsert_atomic_data_oneargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Insert_<wbr><wbr>Atomic_<wbr><wbr>Data_<wbr><wbr>One<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootinsert_conceptnet_dataargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Insert_<wbr><wbr>Conceptnet_<wbr><wbr>Data<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootinsert_conceptnet_data_oneargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Insert_<wbr><wbr>Conceptnet_<wbr><wbr>Data_<wbr><wbr>One<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootinsert_conversationsargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Insert_<wbr><wbr>Conversations<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootinsert_conversations_oneargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Insert_<wbr><wbr>Conversations_<wbr><wbr>One<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootinsert_developersargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Insert_<wbr><wbr>Developers<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootinsert_developers_oneargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Insert_<wbr><wbr>Developers_<wbr><wbr>One<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootinsert_end_user_conversationsargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Insert_<wbr><wbr>End_<wbr><wbr>User_<wbr><wbr>Conversations<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootinsert_end_user_conversations_oneargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Insert_<wbr><wbr>End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>One<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootinsert_end_usersargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Insert_<wbr><wbr>End_<wbr><wbr>Users<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootinsert_end_users_oneargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Insert_<wbr><wbr>End_<wbr><wbr>Users_<wbr><wbr>One<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootinsert_eventsargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Insert_<wbr><wbr>Events<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootinsert_events_oneargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Insert_<wbr><wbr>Events_<wbr><wbr>One<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootinsert_invitesargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Insert_<wbr><wbr>Invites<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootinsert_invites_oneargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Insert_<wbr><wbr>Invites_<wbr><wbr>One<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootinsert_kv_scope_enumargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Insert_<wbr><wbr>Kv_<wbr><wbr>Scope_<wbr><wbr>Enum<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootinsert_kv_scope_enum_oneargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Insert_<wbr><wbr>Kv_<wbr><wbr>Scope_<wbr><wbr>Enum_<wbr><wbr>One<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootinsert_kv_storeargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Insert_<wbr><wbr>Kv_<wbr><wbr>Store<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootinsert_kv_store_oneargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Insert_<wbr><wbr>Kv_<wbr><wbr>Store_<wbr><wbr>One<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootinsert_objectsargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Insert_<wbr><wbr>Objects<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootinsert_objects_oneargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Insert_<wbr><wbr>Objects_<wbr><wbr>One<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootinsert_speaker_type_enumargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Insert_<wbr><wbr>Speaker_<wbr><wbr>Type_<wbr><wbr>Enum<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootinsert_speaker_type_enum_oneargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Insert_<wbr><wbr>Speaker_<wbr><wbr>Type_<wbr><wbr>Enum_<wbr><wbr>One<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootinsert_utterancesargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Insert_<wbr><wbr>Utterances<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootinsert_utterances_oneargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Insert_<wbr><wbr>Utterances_<wbr><wbr>One<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootupdate_appsargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Update_<wbr><wbr>Apps<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootupdate_atomic_dataargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Update_<wbr><wbr>Atomic_<wbr><wbr>Data<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootupdate_conceptnet_dataargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Update_<wbr><wbr>Conceptnet_<wbr><wbr>Data<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootupdate_conversationsargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Update_<wbr><wbr>Conversations<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootupdate_developersargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Update_<wbr><wbr>Developers<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootupdate_end_user_conversationsargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Update_<wbr><wbr>End_<wbr><wbr>User_<wbr><wbr>Conversations<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootupdate_end_user_conversations_by_pkargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Update_<wbr><wbr>End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>By_<wbr><wbr>PkArgs</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootupdate_end_usersargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Update_<wbr><wbr>End_<wbr><wbr>Users<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootupdate_eventsargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Update_<wbr><wbr>Events<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootupdate_invitesargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Update_<wbr><wbr>Invites<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootupdate_kv_scope_enumargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Update_<wbr><wbr>Kv_<wbr><wbr>Scope_<wbr><wbr>Enum<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootupdate_kv_scope_enum_by_pkargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Update_<wbr><wbr>Kv_<wbr><wbr>Scope_<wbr><wbr>Enum_<wbr><wbr>By_<wbr><wbr>PkArgs</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootupdate_kv_storeargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Update_<wbr><wbr>Kv_<wbr><wbr>Store<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootupdate_kv_store_by_pkargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Update_<wbr><wbr>Kv_<wbr><wbr>Store_<wbr><wbr>By_<wbr><wbr>PkArgs</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootupdate_objectsargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Update_<wbr><wbr>Objects<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootupdate_objects_by_pkargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Update_<wbr><wbr>Objects_<wbr><wbr>By_<wbr><wbr>PkArgs</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootupdate_speaker_type_enumargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Update_<wbr><wbr>Speaker_<wbr><wbr>Type_<wbr><wbr>Enum<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootupdate_speaker_type_enum_by_pkargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Update_<wbr><wbr>Speaker_<wbr><wbr>Type_<wbr><wbr>Enum_<wbr><wbr>By_<wbr><wbr>PkArgs</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#mutation_rootupdate_utterancesargs" class="tsd-kind-icon">Mutation_<wbr><wbr>Root<wbr>Update_<wbr><wbr>Utterances<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#nlpbatch" class="tsd-kind-icon">Nlp<wbr>Batch</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#nlpdoc" class="tsd-kind-icon">Nlp<wbr>Doc</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#numeric_comparison_exp" class="tsd-kind-icon">Numeric_<wbr><wbr>Comparison_<wbr><wbr>Exp</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#objects" class="tsd-kind-icon">Objects</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#objectsmetadataargs" class="tsd-kind-icon">Objects<wbr>Metadata<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#objects_aggregate" class="tsd-kind-icon">Objects_<wbr><wbr>Aggregate</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#objects_aggregate_fields" class="tsd-kind-icon">Objects_<wbr><wbr>Aggregate_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#objects_aggregate_fieldscountargs" class="tsd-kind-icon">Objects_<wbr><wbr>Aggregate_<wbr><wbr>Fields<wbr>Count<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#objects_append_input" class="tsd-kind-icon">Objects_<wbr><wbr>Append_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#objects_avg_fields" class="tsd-kind-icon">Objects_<wbr><wbr>Avg_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#objects_bool_exp" class="tsd-kind-icon">Objects_<wbr><wbr>Bool_<wbr><wbr>Exp</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#objects_delete_at_path_input" class="tsd-kind-icon">Objects_<wbr><wbr>Delete_<wbr><wbr>At_<wbr><wbr>Path_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#objects_delete_elem_input" class="tsd-kind-icon">Objects_<wbr><wbr>Delete_<wbr><wbr>Elem_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#objects_delete_key_input" class="tsd-kind-icon">Objects_<wbr><wbr>Delete_<wbr><wbr>Key_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#objects_inc_input" class="tsd-kind-icon">Objects_<wbr><wbr>Inc_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#objects_insert_input" class="tsd-kind-icon">Objects_<wbr><wbr>Insert_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#objects_max_fields" class="tsd-kind-icon">Objects_<wbr><wbr>Max_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#objects_min_fields" class="tsd-kind-icon">Objects_<wbr><wbr>Min_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#objects_mutation_response" class="tsd-kind-icon">Objects_<wbr><wbr>Mutation_<wbr><wbr>Response</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#objects_on_conflict" class="tsd-kind-icon">Objects_<wbr><wbr>On_<wbr><wbr>Conflict</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#objects_order_by" class="tsd-kind-icon">Objects_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#objects_pk_columns_input" class="tsd-kind-icon">Objects_<wbr><wbr>Pk_<wbr><wbr>Columns_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#objects_prepend_input" class="tsd-kind-icon">Objects_<wbr><wbr>Prepend_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#objects_set_input" class="tsd-kind-icon">Objects_<wbr><wbr>Set_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#objects_stddev_fields" class="tsd-kind-icon">Objects_<wbr><wbr>Stddev_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#objects_stddev_pop_fields" class="tsd-kind-icon">Objects_<wbr><wbr>Stddev_<wbr><wbr>Pop_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#objects_stddev_samp_fields" class="tsd-kind-icon">Objects_<wbr><wbr>Stddev_<wbr><wbr>Samp_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#objects_sum_fields" class="tsd-kind-icon">Objects_<wbr><wbr>Sum_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#objects_var_pop_fields" class="tsd-kind-icon">Objects_<wbr><wbr>Var_<wbr><wbr>Pop_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#objects_var_samp_fields" class="tsd-kind-icon">Objects_<wbr><wbr>Var_<wbr><wbr>Samp_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#objects_variance_fields" class="tsd-kind-icon">Objects_<wbr><wbr>Variance_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#pairsimilarity" class="tsd-kind-icon">Pair<wbr>Similarity</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#paraphrase" class="tsd-kind-icon">Paraphrase</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#paraphrasesentencequery" class="tsd-kind-icon">Paraphrase<wbr>Sentence<wbr>Query</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#paraphrasesentencequeryvariables" class="tsd-kind-icon">Paraphrase<wbr>Sentence<wbr>Query<wbr>Variables</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#parseacequery" class="tsd-kind-icon">Parse<wbr>Ace<wbr>Query</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#parseacequeryvariables" class="tsd-kind-icon">Parse<wbr>Ace<wbr>Query<wbr>Variables</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#parsecontextquery" class="tsd-kind-icon">Parse<wbr>Context<wbr>Query</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#parsecontextqueryvariables" class="tsd-kind-icon">Parse<wbr>Context<wbr>Query<wbr>Variables</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#parsetextquery" class="tsd-kind-icon">Parse<wbr>Text<wbr>Query</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#parsetextqueryvariables" class="tsd-kind-icon">Parse<wbr>Text<wbr>Query<wbr>Variables</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#parsetexttokensquery" class="tsd-kind-icon">Parse<wbr>Text<wbr>Tokens<wbr>Query</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#parsetexttokensqueryvariables" class="tsd-kind-icon">Parse<wbr>Text<wbr>Tokens<wbr>Query<wbr>Variables</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#phrasematch" class="tsd-kind-icon">Phrase<wbr>Match</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#predictnextturnquery" class="tsd-kind-icon">Predict<wbr>Next<wbr>Turn<wbr>Query</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#predictnextturnqueryvariables" class="tsd-kind-icon">Predict<wbr>Next<wbr>Turn<wbr>Query<wbr>Variables</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_root" class="tsd-kind-icon">Query_<wbr><wbr>Root</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootappsargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Apps<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootapps_aggregateargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Apps_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootatomic_dataargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Atomic_<wbr><wbr>Data<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootatomic_data_aggregateargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Atomic_<wbr><wbr>Data_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootcallapplyvoicecssargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Call<wbr>Apply<wbr>Voice<wbr>Css<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootcallcomposeargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Call<wbr>Compose<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootcallmatchintentargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Call<wbr>Match<wbr>Intent<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootcallmeasuresimilarityargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Call<wbr>Measure<wbr>Similarity<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootcallnextdialogturnargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Call<wbr>Next<wbr>Dialog<wbr>Turn<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootcallnlpbatchargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Call<wbr>Nlp<wbr>Batch<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootcallnlpdocargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Call<wbr>Nlp<wbr>Doc<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootcallparaphrasesentenceargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Call<wbr>Paraphrase<wbr>Sentence<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootcallparseaceargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Call<wbr>Parse<wbr>Ace<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootcallparsecontextargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Call<wbr>Parse<wbr>Context<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootcallshowdocsargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Call<wbr>Show<wbr>Docs<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootcallspeechtotextargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Call<wbr>Speech<wbr>ToText<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootcalltexttospeechargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Call<wbr>Text<wbr>ToSpeech<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootconceptnet_dataargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Conceptnet_<wbr><wbr>Data<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootconceptnet_data_aggregateargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Conceptnet_<wbr><wbr>Data_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootconceptnet_search_relationsargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Conceptnet_<wbr><wbr>Search_<wbr><wbr>Relations<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootconceptnet_search_relations_aggregateargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Conceptnet_<wbr><wbr>Search_<wbr><wbr>Relations_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootconversationsargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Conversations<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootconversations_aggregateargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Conversations_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootdevelopersargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Developers<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootdevelopers_aggregateargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Developers_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootend_user_conversationsargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>End_<wbr><wbr>User_<wbr><wbr>Conversations<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootend_user_conversations_aggregateargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootend_user_conversations_by_pkargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>By_<wbr><wbr>PkArgs</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootend_usersargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>End_<wbr><wbr>Users<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootend_users_aggregateargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>End_<wbr><wbr>Users_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rooteventsargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Events<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootevents_aggregateargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Events_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_roothistoryargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>History<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_roothistory_aggregateargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>History_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootinvitesargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Invites<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootinvites_aggregateargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Invites_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootkv_scope_enumargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Kv_<wbr><wbr>Scope_<wbr><wbr>Enum<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootkv_scope_enum_aggregateargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Kv_<wbr><wbr>Scope_<wbr><wbr>Enum_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootkv_scope_enum_by_pkargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Kv_<wbr><wbr>Scope_<wbr><wbr>Enum_<wbr><wbr>By_<wbr><wbr>PkArgs</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootkv_storeargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Kv_<wbr><wbr>Store<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootkv_store_aggregateargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Kv_<wbr><wbr>Store_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootkv_store_by_pkargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Kv_<wbr><wbr>Store_<wbr><wbr>By_<wbr><wbr>PkArgs</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootlast_utteranceargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Last_<wbr><wbr>Utterance<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootlast_utterance_aggregateargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Last_<wbr><wbr>Utterance_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootobjectsargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Objects<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootobjects_aggregateargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Objects_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootobjects_by_pkargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Objects_<wbr><wbr>By_<wbr><wbr>PkArgs</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootspeaker_type_enumargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Speaker_<wbr><wbr>Type_<wbr><wbr>Enum<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootspeaker_type_enum_aggregateargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Speaker_<wbr><wbr>Type_<wbr><wbr>Enum_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootspeaker_type_enum_by_pkargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Speaker_<wbr><wbr>Type_<wbr><wbr>Enum_<wbr><wbr>By_<wbr><wbr>PkArgs</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootutterancesargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Utterances<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#query_rootutterances_aggregateargs" class="tsd-kind-icon">Query_<wbr><wbr>Root<wbr>Utterances_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#rendercssquery" class="tsd-kind-icon">Render<wbr>Css<wbr>Query</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#rendercssqueryvariables" class="tsd-kind-icon">Render<wbr>Css<wbr>Query<wbr>Variables</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#resolvecoreferencesquery" class="tsd-kind-icon">Resolve<wbr>Coreferences<wbr>Query</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#resolvecoreferencesqueryvariables" class="tsd-kind-icon">Resolve<wbr>Coreferences<wbr>Query<wbr>Variables</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#scalars" class="tsd-kind-icon">Scalars</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#scores" class="tsd-kind-icon">Scores</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#sdk" class="tsd-kind-icon">Sdk</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#sdkfunctionwrapper" class="tsd-kind-icon">Sdk<wbr>Function<wbr>Wrapper</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#sentencesimilarityscores" class="tsd-kind-icon">Sentence<wbr>Similarity<wbr>Scores</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#serviceinfo" class="tsd-kind-icon">Service<wbr>Info</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#slingdocument" class="tsd-kind-icon">Sling<wbr>Document</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#slingmention" class="tsd-kind-icon">Sling<wbr>Mention</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#span" class="tsd-kind-icon">Span</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#spanextension" class="tsd-kind-icon">Span<wbr>Extension</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#speaker_type_enum" class="tsd-kind-icon">Speaker_<wbr><wbr>Type_<wbr><wbr>Enum</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#speaker_type_enumutterancesargs" class="tsd-kind-icon">Speaker_<wbr><wbr>Type_<wbr><wbr>Enum<wbr>Utterances<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#speaker_type_enumutterances_aggregateargs" class="tsd-kind-icon">Speaker_<wbr><wbr>Type_<wbr><wbr>Enum<wbr>Utterances_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#speaker_type_enum_aggregate" class="tsd-kind-icon">Speaker_<wbr><wbr>Type_<wbr><wbr>Enum_<wbr><wbr>Aggregate</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#speaker_type_enum_aggregate_fields" class="tsd-kind-icon">Speaker_<wbr><wbr>Type_<wbr><wbr>Enum_<wbr><wbr>Aggregate_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#speaker_type_enum_aggregate_fieldscountargs" class="tsd-kind-icon">Speaker_<wbr><wbr>Type_<wbr><wbr>Enum_<wbr><wbr>Aggregate_<wbr><wbr>Fields<wbr>Count<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#speaker_type_enum_bool_exp" class="tsd-kind-icon">Speaker_<wbr><wbr>Type_<wbr><wbr>Enum_<wbr><wbr>Bool_<wbr><wbr>Exp</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#speaker_type_enum_enum_comparison_exp" class="tsd-kind-icon">Speaker_<wbr><wbr>Type_<wbr><wbr>Enum_<wbr><wbr>Enum_<wbr><wbr>Comparison_<wbr><wbr>Exp</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#speaker_type_enum_insert_input" class="tsd-kind-icon">Speaker_<wbr><wbr>Type_<wbr><wbr>Enum_<wbr><wbr>Insert_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#speaker_type_enum_max_fields" class="tsd-kind-icon">Speaker_<wbr><wbr>Type_<wbr><wbr>Enum_<wbr><wbr>Max_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#speaker_type_enum_min_fields" class="tsd-kind-icon">Speaker_<wbr><wbr>Type_<wbr><wbr>Enum_<wbr><wbr>Min_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#speaker_type_enum_mutation_response" class="tsd-kind-icon">Speaker_<wbr><wbr>Type_<wbr><wbr>Enum_<wbr><wbr>Mutation_<wbr><wbr>Response</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#speaker_type_enum_obj_rel_insert_input" class="tsd-kind-icon">Speaker_<wbr><wbr>Type_<wbr><wbr>Enum_<wbr><wbr>Obj_<wbr><wbr>Rel_<wbr><wbr>Insert_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#speaker_type_enum_on_conflict" class="tsd-kind-icon">Speaker_<wbr><wbr>Type_<wbr><wbr>Enum_<wbr><wbr>On_<wbr><wbr>Conflict</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#speaker_type_enum_order_by" class="tsd-kind-icon">Speaker_<wbr><wbr>Type_<wbr><wbr>Enum_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#speaker_type_enum_pk_columns_input" class="tsd-kind-icon">Speaker_<wbr><wbr>Type_<wbr><wbr>Enum_<wbr><wbr>Pk_<wbr><wbr>Columns_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#speaker_type_enum_set_input" class="tsd-kind-icon">Speaker_<wbr><wbr>Type_<wbr><wbr>Enum_<wbr><wbr>Set_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#speechtotextquery" class="tsd-kind-icon">Speech<wbr>ToText<wbr>Query</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#speechtotextqueryvariables" class="tsd-kind-icon">Speech<wbr>ToText<wbr>Query<wbr>Variables</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#ssmlresult" class="tsd-kind-icon">Ssml<wbr>Result</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#string_comparison_exp" class="tsd-kind-icon">String_<wbr><wbr>Comparison_<wbr><wbr>Exp</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#sttconfig" class="tsd-kind-icon">Stt<wbr>Config</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#sttresult" class="tsd-kind-icon">Stt<wbr>Result</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_root" class="tsd-kind-icon">Subscription_<wbr><wbr>Root</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootappsargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>Apps<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootapps_aggregateargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>Apps_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootatomic_dataargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>Atomic_<wbr><wbr>Data<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootatomic_data_aggregateargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>Atomic_<wbr><wbr>Data_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootconceptnet_dataargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>Conceptnet_<wbr><wbr>Data<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootconceptnet_data_aggregateargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>Conceptnet_<wbr><wbr>Data_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootconceptnet_search_relationsargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>Conceptnet_<wbr><wbr>Search_<wbr><wbr>Relations<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootconceptnet_search_relations_aggregateargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>Conceptnet_<wbr><wbr>Search_<wbr><wbr>Relations_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootconversationsargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>Conversations<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootconversations_aggregateargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>Conversations_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootdevelopersargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>Developers<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootdevelopers_aggregateargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>Developers_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootend_user_conversationsargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>End_<wbr><wbr>User_<wbr><wbr>Conversations<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootend_user_conversations_aggregateargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootend_user_conversations_by_pkargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>End_<wbr><wbr>User_<wbr><wbr>Conversations_<wbr><wbr>By_<wbr><wbr>PkArgs</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootend_usersargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>End_<wbr><wbr>Users<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootend_users_aggregateargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>End_<wbr><wbr>Users_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rooteventsargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>Events<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootevents_aggregateargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>Events_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_roothistoryargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>History<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_roothistory_aggregateargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>History_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootinvitesargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>Invites<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootinvites_aggregateargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>Invites_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootkv_scope_enumargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>Kv_<wbr><wbr>Scope_<wbr><wbr>Enum<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootkv_scope_enum_aggregateargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>Kv_<wbr><wbr>Scope_<wbr><wbr>Enum_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootkv_scope_enum_by_pkargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>Kv_<wbr><wbr>Scope_<wbr><wbr>Enum_<wbr><wbr>By_<wbr><wbr>PkArgs</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootkv_storeargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>Kv_<wbr><wbr>Store<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootkv_store_aggregateargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>Kv_<wbr><wbr>Store_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootkv_store_by_pkargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>Kv_<wbr><wbr>Store_<wbr><wbr>By_<wbr><wbr>PkArgs</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootlast_utteranceargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>Last_<wbr><wbr>Utterance<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootlast_utterance_aggregateargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>Last_<wbr><wbr>Utterance_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootobjectsargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>Objects<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootobjects_aggregateargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>Objects_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootobjects_by_pkargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>Objects_<wbr><wbr>By_<wbr><wbr>PkArgs</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootspeaker_type_enumargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>Speaker_<wbr><wbr>Type_<wbr><wbr>Enum<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootspeaker_type_enum_aggregateargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>Speaker_<wbr><wbr>Type_<wbr><wbr>Enum_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootspeaker_type_enum_by_pkargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>Speaker_<wbr><wbr>Type_<wbr><wbr>Enum_<wbr><wbr>By_<wbr><wbr>PkArgs</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootutterancesargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>Utterances<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#subscription_rootutterances_aggregateargs" class="tsd-kind-icon">Subscription_<wbr><wbr>Root<wbr>Utterances_<wbr><wbr>Aggregate<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#textalternative" class="tsd-kind-icon">Text<wbr>Alternative</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#texttospeechquery" class="tsd-kind-icon">Text<wbr>ToSpeech<wbr>Query</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#texttospeechqueryvariables" class="tsd-kind-icon">Text<wbr>ToSpeech<wbr>Query<wbr>Variables</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#timestamptz_comparison_exp" class="tsd-kind-icon">Timestamptz_<wbr><wbr>Comparison_<wbr><wbr>Exp</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#tovecquery" class="tsd-kind-icon">To<wbr>Vec<wbr>Query</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#tovecqueryvariables" class="tsd-kind-icon">To<wbr>Vec<wbr>Query<wbr>Variables</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#token" class="tsd-kind-icon">Token</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#tokenextension" class="tsd-kind-icon">Token<wbr>Extension</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#tstzrange_comparison_exp" class="tsd-kind-icon">Tstzrange_<wbr><wbr>Comparison_<wbr><wbr>Exp</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#ttsconfig" class="tsd-kind-icon">Tts<wbr>Config</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#ttsresult" class="tsd-kind-icon">Tts<wbr>Result</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#utterances" class="tsd-kind-icon">Utterances</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#utterances_aggregate" class="tsd-kind-icon">Utterances_<wbr><wbr>Aggregate</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#utterances_aggregate_fields" class="tsd-kind-icon">Utterances_<wbr><wbr>Aggregate_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#utterances_aggregate_fieldscountargs" class="tsd-kind-icon">Utterances_<wbr><wbr>Aggregate_<wbr><wbr>Fields<wbr>Count<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#utterances_aggregate_order_by" class="tsd-kind-icon">Utterances_<wbr><wbr>Aggregate_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#utterances_arr_rel_insert_input" class="tsd-kind-icon">Utterances_<wbr><wbr>Arr_<wbr><wbr>Rel_<wbr><wbr>Insert_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#utterances_avg_fields" class="tsd-kind-icon">Utterances_<wbr><wbr>Avg_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#utterances_avg_order_by" class="tsd-kind-icon">Utterances_<wbr><wbr>Avg_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#utterances_bool_exp" class="tsd-kind-icon">Utterances_<wbr><wbr>Bool_<wbr><wbr>Exp</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#utterances_inc_input" class="tsd-kind-icon">Utterances_<wbr><wbr>Inc_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#utterances_insert_input" class="tsd-kind-icon">Utterances_<wbr><wbr>Insert_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#utterances_max_fields" class="tsd-kind-icon">Utterances_<wbr><wbr>Max_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#utterances_max_order_by" class="tsd-kind-icon">Utterances_<wbr><wbr>Max_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#utterances_min_fields" class="tsd-kind-icon">Utterances_<wbr><wbr>Min_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#utterances_min_order_by" class="tsd-kind-icon">Utterances_<wbr><wbr>Min_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#utterances_mutation_response" class="tsd-kind-icon">Utterances_<wbr><wbr>Mutation_<wbr><wbr>Response</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#utterances_order_by" class="tsd-kind-icon">Utterances_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#utterances_set_input" class="tsd-kind-icon">Utterances_<wbr><wbr>Set_<wbr><wbr>Input</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#utterances_stddev_fields" class="tsd-kind-icon">Utterances_<wbr><wbr>Stddev_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#utterances_stddev_order_by" class="tsd-kind-icon">Utterances_<wbr><wbr>Stddev_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#utterances_stddev_pop_fields" class="tsd-kind-icon">Utterances_<wbr><wbr>Stddev_<wbr><wbr>Pop_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#utterances_stddev_pop_order_by" class="tsd-kind-icon">Utterances_<wbr><wbr>Stddev_<wbr><wbr>Pop_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#utterances_stddev_samp_fields" class="tsd-kind-icon">Utterances_<wbr><wbr>Stddev_<wbr><wbr>Samp_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#utterances_stddev_samp_order_by" class="tsd-kind-icon">Utterances_<wbr><wbr>Stddev_<wbr><wbr>Samp_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#utterances_sum_fields" class="tsd-kind-icon">Utterances_<wbr><wbr>Sum_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#utterances_sum_order_by" class="tsd-kind-icon">Utterances_<wbr><wbr>Sum_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#utterances_var_pop_fields" class="tsd-kind-icon">Utterances_<wbr><wbr>Var_<wbr><wbr>Pop_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#utterances_var_pop_order_by" class="tsd-kind-icon">Utterances_<wbr><wbr>Var_<wbr><wbr>Pop_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#utterances_var_samp_fields" class="tsd-kind-icon">Utterances_<wbr><wbr>Var_<wbr><wbr>Samp_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#utterances_var_samp_order_by" class="tsd-kind-icon">Utterances_<wbr><wbr>Var_<wbr><wbr>Samp_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#utterances_variance_fields" class="tsd-kind-icon">Utterances_<wbr><wbr>Variance_<wbr><wbr>Fields</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#utterances_variance_order_by" class="tsd-kind-icon">Utterances_<wbr><wbr>Variance_<wbr><wbr>Order_<wbr><wbr>By</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#wordmatch" class="tsd-kind-icon">Word<wbr>Match</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#_text_comparison_exp" class="tsd-kind-icon">_<wbr>Text_<wbr><wbr>Comparison_<wbr><wbr>Exp</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="modules.html#extractnumericdatadocument" class="tsd-kind-icon">Extract<wbr>Numeric<wbr>Data<wbr>Document</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="modules.html#getsentimentdocument" class="tsd-kind-icon">Get<wbr>Sentiment<wbr>Document</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="modules.html#matchintentdocument" class="tsd-kind-icon">Match<wbr>Intent<wbr>Document</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="modules.html#measuresimilaritydocument" class="tsd-kind-icon">Measure<wbr>Similarity<wbr>Document</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="modules.html#paraphrasesentencedocument" class="tsd-kind-icon">Paraphrase<wbr>Sentence<wbr>Document</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="modules.html#parseacedocument" class="tsd-kind-icon">Parse<wbr>Ace<wbr>Document</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="modules.html#parsecontextdocument" class="tsd-kind-icon">Parse<wbr>Context<wbr>Document</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="modules.html#parsetextdocument" class="tsd-kind-icon">Parse<wbr>Text<wbr>Document</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="modules.html#parsetexttokensdocument" class="tsd-kind-icon">Parse<wbr>Text<wbr>Tokens<wbr>Document</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="modules.html#predictnextturndocument" class="tsd-kind-icon">Predict<wbr>Next<wbr>Turn<wbr>Document</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="modules.html#rendercssdocument" class="tsd-kind-icon">Render<wbr>Css<wbr>Document</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="modules.html#resolvecoreferencesdocument" class="tsd-kind-icon">Resolve<wbr>Coreferences<wbr>Document</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="modules.html#speechtotextdocument" class="tsd-kind-icon">Speech<wbr>ToText<wbr>Document</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="modules.html#texttospeechdocument" class="tsd-kind-icon">Text<wbr>ToSpeech<wbr>Document</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="modules.html#tovecdocument" class="tsd-kind-icon">To<wbr>Vec<wbr>Document</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#getsdk" class="tsd-kind-icon">get<wbr>Sdk</a>
+					<li class=" tsd-kind-reference">
+						<a href="modules.html#default" class="tsd-kind-icon">default</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/mauna.html" class="tsd-kind-icon">Mauna</a>
 					</li>
 				</ul>
 			</nav>
@@ -2343,6 +350,11 @@
 	<div class="container">
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
 		</div>
 	</div>
 </footer>
