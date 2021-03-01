@@ -2,7 +2,7 @@
   "name": "@mauna-ai/codegen",
   "version": "0.1.0",
   "description": "Code generated from Mauna API schema for CLI, SDK etc",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "jest",
     "codegen": "validEnv HASURA_ADMIN_SECRET && graphql-codegen --config codegen.js",

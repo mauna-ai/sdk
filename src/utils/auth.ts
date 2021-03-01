@@ -1,3 +1,6 @@
+require("isomorphic-fetch");
+
+import {authEndpoint} from "../config";
 import {decrypt, encrypt, generateNonce, generateEncryptionKey} from "./crypto";
 import {now} from "./date";
 
@@ -49,3 +52,18 @@ export function decodeJWT(response: authResponseData, apiKey: string, nonce: str
 
   return decode(enc_token, key);
 }
+
+export async function requestJWT(developer_id: number, token_payload: encryptedString): Promise<authResponseData> {
+  const data: authRequestData = { developer_id, token_payload };
+  const body: string = JSON.stringify(data);
+
+  const response= await fetch(authEndpoint, {
+    method: "POST",
+    body
+  });
+
+  const authData: authResponseData = await response.json();
+
+  return authData;
+}
+
