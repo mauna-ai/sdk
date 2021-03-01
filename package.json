@@ -35,9 +35,14 @@
   },
   "dependencies": {
     "bitwise": "^2.1.0",
+    "bs-json": "^1.0.1",
     "graphql": "^15.5.0",
     "graphql-lodash": "^1.3.4",
+    "graphql-request": "^3.4.0",
     "graphql-tag": "^2.11.0",
-    "lodash": "^4.17.21"
+    "isomorphic-fetch": "^3.0.0",
+    "lodash": "^4.17.21",
+    "polly-js": "^1.8.0",
+    "reason-dataloader": "^0.1.1"
   }
 }

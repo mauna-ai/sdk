@@ -3,21 +3,21 @@ import {now} from "./date";
 
 import type { encryptedString, encryptionKey} from "./crypto";
 
-type authRequestData = {
+export type authRequestData = {
   developer_id: number,
   token_payload: encryptedString
 };
 
-type tokenPayload = {
+export type tokenPayload = {
   timestamp: number,
   nonce: string
 };
 
-type authResponseData = {
+export type authResponseData = {
   enc_token: encryptedString
 };
 
-type JWT = string;
+export type JWT = string;
 
 export function encode(payload: tokenPayload, key: encryptionKey): encryptedString {
   const payloadJSON = JSON.stringify(payload);
