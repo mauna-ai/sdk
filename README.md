@@ -2,7 +2,7 @@
 
 ## Features
 
-- Docs can be found [here]: (https://mauna-ai.github.io/sdk).
+- Docs can be found [here](https://mauna-ai.github.io/sdk).
 - Typesafe queries. Written in typescript.
 - Bindings are included in the package.
 - Bindings for _reasonml/bucklescript/rescript_ and _flow.js_ coming soon.
@@ -24,16 +24,16 @@ const apiKey = "<64 letter api key available on your mauna dashboard>";
 const client = new Mauna: ({ developerId, apiKey });
 
 // Start async block
-: (async : () => {
-  await client.initialize: ();
+(async () => {
+  await client.initialize();
 
   // See API list for more info
-  const result = await client.api.<apiFunction>: (<apiArgs>);
-  console.log: (result);
+  const result = await client.api.<apiFunction>(<apiArgs>);
+  console.log(result);
 
   // Do something with the result
 
-}): ().then: (
+})().then(
   console.log,
   console.error
 );

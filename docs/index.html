@@ -65,7 +65,7 @@
 					<h2>Features</h2>
 				</a>
 				<ul>
-					<li>Docs can be found [here]: (<a href="https://mauna-ai.github.io/sdk">https://mauna-ai.github.io/sdk</a>).</li>
+					<li>Docs can be found <a href="https://mauna-ai.github.io/sdk">here</a>.</li>
 					<li>Typesafe queries. Written in typescript.</li>
 					<li>Bindings are included in the package.</li>
 					<li>Bindings for <em>reasonml/bucklescript/rescript</em> and <em>flow.js</em> coming soon.</li>
@@ -88,16 +88,16 @@
 <span style="color: #000000">const client = new Mauna: (</span><span style="color: #0000FF">{</span><span style="color: #000000FF"> </span><span style="color: #001080">developerId</span><span style="color: #000000FF">, </span><span style="color: #001080">apiKey</span><span style="color: #000000FF"> </span><span style="color: #0000FF">}</span><span style="color: #000000">);</span>
 
 <span style="color: #000000">// Start async block</span>
-<span style="color: #000000">: (async : () =&gt; </span><span style="color: #0000FF">{</span>
-<span style="color: #000000FF">  </span><span style="color: #AF00DB">await</span><span style="color: #000000FF"> </span><span style="color: #001080">client</span><span style="color: #000000FF">.</span><span style="color: #001080">initialize</span><span style="color: #000000FF">: ();</span>
+<span style="color: #000000">(async () =&gt; </span><span style="color: #0000FF">{</span>
+<span style="color: #000000FF">  </span><span style="color: #AF00DB">await</span><span style="color: #000000FF"> </span><span style="color: #001080">client</span><span style="color: #000000FF">.</span><span style="color: #795E26">initialize</span><span style="color: #000000FF">();</span>
 
 <span style="color: #000000FF">  </span><span style="color: #008000">// See API list for more info</span>
-<span style="color: #000000FF">  </span><span style="color: #001080">const</span><span style="color: #000000FF"> </span><span style="color: #001080">result</span><span style="color: #000000FF"> </span><span style="color: #000000">=</span><span style="color: #000000FF"> </span><span style="color: #AF00DB">await</span><span style="color: #000000FF"> </span><span style="color: #001080">client</span><span style="color: #000000FF">.</span><span style="color: #001080">api</span><span style="color: #000000FF">.</span><span style="color: #000000">&lt;</span><span style="color: #001080">apiFunction</span><span style="color: #000000">&gt;</span><span style="color: #000000FF">: (</span><span style="color: #800000">&lt;</span><span style="color: #267F99">apiArgs</span><span style="color: #800000">&gt;</span><span style="color: #000000FF">);</span>
-<span style="color: #000000FF">  console.log: (result);</span>
+<span style="color: #000000FF">  </span><span style="color: #001080">const</span><span style="color: #000000FF"> </span><span style="color: #001080">result</span><span style="color: #000000FF"> </span><span style="color: #000000">=</span><span style="color: #000000FF"> </span><span style="color: #AF00DB">await</span><span style="color: #000000FF"> </span><span style="color: #001080">client</span><span style="color: #000000FF">.</span><span style="color: #001080">api</span><span style="color: #000000FF">.</span><span style="color: #000000">&lt;</span><span style="color: #001080">apiFunction</span><span style="color: #000000">&gt;</span><span style="color: #000000FF">(</span><span style="color: #800000">&lt;</span><span style="color: #267F99">apiArgs</span><span style="color: #800000">&gt;</span><span style="color: #000000FF">);</span>
+<span style="color: #000000FF">  console.log(result);</span>
 
 <span style="color: #000000FF">  // Do something with the result</span>
 
-<span style="color: #000000FF">}): ().then: (</span>
+<span style="color: #000000FF">})().then(</span>
 <span style="color: #000000FF">  console.log,</span>
 <span style="color: #000000FF">  console.error</span>
 <span style="color: #000000FF">);</span>
