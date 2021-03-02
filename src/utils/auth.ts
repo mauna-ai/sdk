@@ -48,8 +48,7 @@ export function createExchangeToken(apiKey: string): [encryptedString, string] {
   const nonce = generateNonce();
   const payload: tokenPayload = { timestamp, nonce };
 
-  const key = generateEncryptionKey(apiKey, nonce);
-  const exchangeToken = encode(payload, key);
+  const exchangeToken = encode(payload, apiKey);
 
   return [exchangeToken, nonce];
 }
@@ -71,10 +70,12 @@ export async function requestJWT(
 ): Promise<authResponseData> {
   const data: authRequestData = { developer_id, token_payload };
   const body: string = JSON.stringify(data);
+  const headers = { "Content-Type": "application/json" };
 
   const response = await fetch(authEndpoint, {
     method: "POST",
     body,
+    headers,
   });
 
   const authData: authResponseData = await response.json();
