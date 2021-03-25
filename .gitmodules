@@ -1,0 +1,3 @@
+[submodule "mauna_graphql"]
+	path = mauna_graphql
+	url = https://github.com/mauna-ai/graphql.git
