@@ -28,8 +28,5 @@ module.exports = {
         "time",
       ],
     },
-    "./graphql.schema.json": {
-      plugins: ["introspection"],
-    },
   },
 };
