@@ -4,7 +4,10 @@ import flow from "lodash/flow";
 import zip from "lodash/zip";
 
 import { default as _gql } from "graphql-tag";
-import { graphqlLodash } from "graphql-lodash";
+
+// Need to do this dance to support both esm and cjs packages
+import graphqlLodashPkg from "graphql-lodash";
+const { graphqlLodash } = graphqlLodashPkg ? graphqlLodashPkg : require("graphql-lodash");
 
 const merge = flow([zip, flatten, compact]);
 

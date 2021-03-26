@@ -1,14 +1,24 @@
 {
     "name": "@mauna/sdk",
-    "version": "0.2.2",
+    "version": "0.2.3",
     "description": "Code generated from Mauna API schema for CLI, SDK etc",
-    "main": "lib/index.js",
+    "main": "./cjs/index.js",
+    "module": "./esm/index.js",
+    "type": "module",
+    "exports": {
+        "./esm": "./esm/index.js"
+    },
+    "files": [
+        "cjs/",
+        "esm/"
+    ],
     "scripts": {
-        "test": "jest",
+        "test": "./tests/checkImport.js && jest --passWithNoTests",
         "version-bump": "git diff-index --quiet HEAD -- || json-bump package.json",
-        "codegen": "validEnv HASURA_ADMIN_SECRET && graphql-codegen --config codegen.js",
-        "tsc": "tsc",
+        "codegen": "validEnv HASURA_ADMIN_SECRET && graphql-codegen --config cjs/codegen.js",
+        "tsc": "tsc && tsc -p tsconfig-cjs.json",
         "docs": "typedoc src/index.ts --out ./docs",
+        "prepublishOnly": "npm run build && npm test",
         "build": "npm run codegen && npm run tsc && npm run docs"
     },
     "repository": {
@@ -28,6 +38,7 @@
         "@graphql-codegen/typescript-graphql-request": "^3.0.2",
         "@graphql-codegen/typescript-oclif": "^1.17.9",
         "@graphql-codegen/typescript-operations": "^1.17.14",
+        "@types/isomorphic-fetch": "^0.0.35",
         "@types/lodash": "^4.14.168",
         "json-bump": "^1.0.2",
         "prettier": "2.2.1",

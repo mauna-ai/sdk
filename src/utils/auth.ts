@@ -1,4 +1,5 @@
-require("isomorphic-fetch");
+import isomorphicFetch from "isomorphic-fetch";
+isomorphicFetch;
 
 import { authEndpoint } from "../config";
 import {

@@ -1,7 +1,10 @@
 # Generated files
 /docs/
-/lib/
 /src/generated/
+/esm/
+/cjs/**/*
+!/cjs/codegen.js
+!/cjs/package.json
 
 # Vim shit
 *.swp
