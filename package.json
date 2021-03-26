@@ -1,12 +1,13 @@
 {
     "name": "@mauna/sdk",
-    "version": "0.2.3",
+    "version": "0.2.4",
     "description": "Code generated from Mauna API schema for CLI, SDK etc",
     "main": "./cjs/index.js",
     "module": "./esm/index.js",
     "type": "module",
     "exports": {
-        "./esm": "./esm/index.js"
+        "./esm": "./esm/index.js",
+        ".": "./cjs/index.js"
     },
     "files": [
         "cjs/",
