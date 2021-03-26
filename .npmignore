@@ -1,5 +1,6 @@
 # Include lib
-!/lib/
+!/esm/
+!/cjs/
 
 # Generated files
 /docs/
