@@ -132,7 +132,7 @@ module.exports = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  testEnvironment: "node",
+  testEnvironment: "./tests/environment.js",
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
@@ -142,12 +142,13 @@ module.exports = {
 
   // The glob patterns Jest uses to detect test files
   testMatch: [
-    "<rootDir>/tests/**/*.js",
+    "<rootDir>/tests/**/test_*.js",
   ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
   testPathIgnorePatterns: [
     "init.js",
+    "environment.js",
   ],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
