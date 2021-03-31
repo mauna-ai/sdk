@@ -1,16 +1,6 @@
-const endpoint = "https://api.mauna.cloud/v1/graphql";
-
 module.exports = {
   overwrite: true,
-  schema: [
-    {
-      [endpoint]: {
-        headers: {
-          "X-Hasura-Admin-Secret": process.env.HASURA_ADMIN_SECRET || "",
-        },
-      },
-    },
-  ],
+  schema: "./schema.graphql",
   documents: "./src/documents/*.graphql",
   generates: {
     "./src/generated/types.ts": {

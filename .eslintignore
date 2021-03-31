@@ -1,8 +1,10 @@
+# Submodule
+/mauna_graphql/
+
 # Cache
 .tmp/
 
 # Generated files
-/lib/
 /docs/
 /src/generated/
 /esm/

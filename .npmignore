@@ -1,5 +1,9 @@
+# Submodule
+/mauna_graphql/
+
 # Include lib
-!/lib/
+!/esm/
+!/cjs/
 
 # Generated files
 /docs/
