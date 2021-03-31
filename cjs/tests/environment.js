@@ -1,4 +1,4 @@
-const NodeEnvironment = require('jest-environment-node');
+const NodeEnvironment = require("jest-environment-node");
 const { Mauna } = require("../");
 
 class MaunaEnvironment extends NodeEnvironment {

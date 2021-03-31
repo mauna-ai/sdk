@@ -33,7 +33,7 @@ export function decrypt(encrypted: string, password: string): string {
   return final;
 }
 
-export const generateNonce = (length: number = 12): string =>
+export const generateNonce = (length = 12): string =>
   crypto
     .randomBytes(Math.round(length / 2))
     .toString("hex")
