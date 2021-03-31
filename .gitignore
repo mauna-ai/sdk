@@ -1,3 +1,6 @@
+# Cache
+.tmp/
+
 # Generated files
 /docs/
 /src/generated/
