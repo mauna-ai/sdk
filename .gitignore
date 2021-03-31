@@ -5,7 +5,10 @@
 /docs/
 /src/generated/
 /esm/
-/cjs/**/*
+/cjs/**/*.js
+/cjs/**/*.ts
+/cjs/**/*.map
+!/cjs/tests/**/*.js
 !/cjs/codegen.js
 !/cjs/package.json
 

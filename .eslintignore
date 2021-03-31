@@ -1,18 +1,19 @@
 # Submodule
 /mauna_graphql/
 
-# Include lib
-!/esm/
-!/cjs/
+# Cache
+.tmp/
 
 # Generated files
 /docs/
 /src/generated/
-
-# Source
-/src/
-
-# -- .gitignore
+/esm/
+/cjs/**/*.js
+/cjs/**/*.ts
+/cjs/**/*.map
+!/cjs/tests/**/*.js
+!/cjs/codegen.js
+!/cjs/package.json
 
 # Vim shit
 *.swp

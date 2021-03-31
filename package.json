@@ -14,12 +14,13 @@
         "esm/"
     ],
     "scripts": {
+        "lint": "eslint . --fix",
         "test": "validEnv MAUNA_API_KEY MAUNA_DEVELOPER_ID && jest --passWithNoTests",
         "version-bump": "git diff-index --quiet HEAD -- || json-bump package.json",
         "codegen": "graphql-codegen --config cjs/codegen.js",
         "tsc": "tsc && tsc -p tsconfig-cjs.json",
         "docs": "typedoc src/index.ts --out ./docs",
-        "prepublishOnly": "npm run build && npm test",
+        "prepublishOnly": "npm run lint && npm run build && npm test",
         "build": "npm run codegen && npm run tsc && npm run docs"
     },
     "repository": {
@@ -42,7 +43,11 @@
         "@types/isomorphic-fetch": "^0.0.35",
         "@types/jest": "^26.0.22",
         "@types/lodash": "^4.14.168",
+        "@typescript-eslint/eslint-plugin": "^4.20.0",
+        "@typescript-eslint/parser": "^4.20.0",
         "enhanced-resolve": "^5.7.0",
+        "eslint": "^7.23.0",
+        "eslint-plugin-jest": "^24.3.2",
         "jest": "^26.6.3",
         "jest-environment-node": "^26.6.2",
         "json-bump": "^1.0.2",
