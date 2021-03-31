@@ -1,6 +1,6 @@
 {
     "name": "@mauna/sdk",
-    "version": "0.2.4",
+    "version": "0.2.5",
     "description": "Code generated from Mauna API schema for CLI, SDK etc",
     "main": "./cjs/index.js",
     "module": "./esm/index.js",
@@ -16,7 +16,7 @@
     "scripts": {
         "test": "./tests/checkImport.js && jest --passWithNoTests",
         "version-bump": "git diff-index --quiet HEAD -- || json-bump package.json",
-        "codegen": "validEnv HASURA_ADMIN_SECRET && graphql-codegen --config cjs/codegen.js",
+        "codegen": "graphql-codegen --config cjs/codegen.js",
         "tsc": "tsc && tsc -p tsconfig-cjs.json",
         "docs": "typedoc src/index.ts --out ./docs",
         "prepublishOnly": "npm run build && npm test",
@@ -44,8 +44,7 @@
         "json-bump": "^1.0.2",
         "prettier": "2.2.1",
         "typedoc": "^0.20.28",
-        "typescript": "^4.1.x",
-        "valid-env": "^1.1.1"
+        "typescript": "^4.1.x"
     },
     "dependencies": {
         "bitwise": "^2.1.0",
