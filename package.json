@@ -1,6 +1,6 @@
 {
     "name": "@mauna/sdk",
-    "version": "0.2.6",
+    "version": "0.2.7",
     "description": "Code generated from Mauna API schema for CLI, SDK etc",
     "main": "./cjs/index.js",
     "module": "./esm/index.js",
