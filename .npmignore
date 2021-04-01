@@ -1,11 +1,22 @@
+# Temp files
+/.tmp/**/*
+/cjs/.tmp/**/*
+
 # Submodule
 /mauna_graphql/
 
 # Include lib
-!/esm/
-!/cjs/
+!/esm/**/*.js
+!/esm/**/*.map
+!/esm/package.json
+!/cjs/**/*.js
+!/cjs/**/*.map
 
 # Generated files
+/esm/**/*.ts
+/cjs/**/*.ts
+/cjs/tests/**/*.js
+/cjs/codegen.js
 /docs/
 /src/generated/
 
