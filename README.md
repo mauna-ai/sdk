@@ -1,7 +1,5 @@
 # Mauna SDK
 
-_Version: 0.2.7_
-
 ## Features
 
 - Docs can be found [here](https://mauna-ai.github.io/sdk).
@@ -299,7 +297,7 @@ api.textToSpeech: (text: string) => {
 
 - Edit files in `src/` directory
 - Run `npm run build`
-- Add test cases in `cjs/tests/` directory. File names need to start with `test_`.
+- Add test cases in `tests/` directory. File names need to start with `test_`.
 - Make sure to set env vars: `export MAUNA_DEVELOPER_ID=XX MAUNA_API_KEY=XXX`
 - Run `npm test`
 
@@ -312,7 +310,6 @@ api.textToSpeech: (text: string) => {
 
 Docs are built using `typedoc` and published on github pages.
 
-- Update version on this README
 - Run `npm run docs`
 - Commit all changes,
 - Then `git checkout gh-pages` and `git merge <original-branch>`

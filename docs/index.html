@@ -319,7 +319,45 @@
 				<pre><code class="language-javascript"><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">textToSpeech</span><span style="color: #000000">: (</span><span style="color: #001080">text</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">  </span><span style="color: #001080">audio</span><span style="color: #000000"> </span><span style="color: #008000">// base64 encoded audio</span>
 <span style="color: #000000">}</span>
+
 </code></pre>
+				<hr>
+				<a href="#building" id="building" style="color: inherit; text-decoration: none;">
+					<h2>Building</h2>
+				</a>
+				<a href="#note-on-package-style-commonjs-vs-esm" id="note-on-package-style-commonjs-vs-esm" style="color: inherit; text-decoration: none;">
+					<h3>Note on package style commonjs vs esm</h3>
+				</a>
+				<ul>
+					<li>The <code>esm/</code> directory is marked as a nodejs-native ES module using <code>esm/package.json</code></li>
+				</ul>
+				<a href="#instructions-for-building-package" id="instructions-for-building-package" style="color: inherit; text-decoration: none;">
+					<h3>Instructions for building package</h3>
+				</a>
+				<ul>
+					<li>Edit files in <code>src/</code> directory</li>
+					<li>Run <code>npm run build</code></li>
+					<li>Add test cases in <code>cjs/tests/</code> directory. File names need to start with <code>test_</code>.</li>
+					<li>Make sure to set env vars: <code>export MAUNA_DEVELOPER_ID=XX MAUNA_API_KEY=XXX</code></li>
+					<li>Run <code>npm test</code></li>
+				</ul>
+				<a href="#instructions-for-publishing-package" id="instructions-for-publishing-package" style="color: inherit; text-decoration: none;">
+					<h3>Instructions for publishing package</h3>
+				</a>
+				<ul>
+					<li>If build successful, <strong>before committing results</strong>, run <code>npm run version bump</code>.</li>
+					<li><code>npm publish --access public</code></li>
+				</ul>
+				<a href="#instructions-for-updating-docs" id="instructions-for-updating-docs" style="color: inherit; text-decoration: none;">
+					<h3>Instructions for updating docs</h3>
+				</a>
+				<p>Docs are built using <code>typedoc</code> and published on github pages.</p>
+				<ul>
+					<li>Run <code>npm run docs</code></li>
+					<li>Commit all changes,</li>
+					<li>Then <code>git checkout gh-pages</code> and <code>git merge &lt;original-branch&gt;</code></li>
+					<li><code>git push origin gh-pages</code></li>
+				</ul>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">

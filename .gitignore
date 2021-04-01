@@ -2,8 +2,13 @@
 .tmp/
 
 # Generated files
+<<<<<<< HEAD
 /lib/
 /docs/
+||||||| merged common ancestors
+/docs/
+=======
+>>>>>>> main
 /src/generated/
 /esm/**/*.js
 /esm/**/*.ts
