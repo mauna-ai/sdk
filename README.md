@@ -297,7 +297,7 @@ api.textToSpeech: (text: string) => {
 
 - Edit files in `src/` directory
 - Run `npm run build`
-- Add test cases in `cjs/tests/` directory. File names need to start with `test_`.
+- Add test cases in `tests/` directory. File names need to start with `test_`.
 - Make sure to set env vars: `export MAUNA_DEVELOPER_ID=XX MAUNA_API_KEY=XXX`
 - Run `npm test`
 
