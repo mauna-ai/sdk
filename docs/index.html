@@ -1,0 +1,405 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>@mauna/sdk</title>
+	<meta name="description" content="Documentation for @mauna/sdk">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">@mauna/sdk</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<h1>@mauna/sdk</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#mauna-sdk" id="mauna-sdk" style="color: inherit; text-decoration: none;">
+					<h1>Mauna SDK</h1>
+				</a>
+				<a href="#features" id="features" style="color: inherit; text-decoration: none;">
+					<h2>Features</h2>
+				</a>
+				<ul>
+					<li>Docs can be found <a href="https://mauna-ai.github.io/sdk">here</a>.</li>
+					<li>Typesafe queries. Written in typescript.</li>
+					<li>Bindings are included in the package.</li>
+					<li>Bindings for <em>reasonml/bucklescript/rescript</em> and <em>flow.js</em> coming soon.</li>
+				</ul>
+				<a href="#installation-and-usage" id="installation-and-usage" style="color: inherit; text-decoration: none;">
+					<h2>Installation and usage</h2>
+				</a>
+				<a href="#install" id="install" style="color: inherit; text-decoration: none;">
+					<h3>Install</h3>
+				</a>
+				<p><code>npm install @mauna/sdk</code></p>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h3>Usage</h3>
+				</a>
+				<pre><code class="language-javascript"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">Mauna</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;@mauna/sdk&quot;</span><span style="color: #000000">;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">developerId</span><span style="color: #000000"> = </span><span style="color: #800000">&lt;int&gt;</span><span style="color: #000000">; // Check your profile on the dashboard for this.</span>
+<span style="color: #000000">const apiKey = &quot;&lt;64 letter api key available on your mauna dashboard&gt;&quot;;</span>
+
+<span style="color: #000000">const client = new Mauna: (</span><span style="color: #0000FF">{</span><span style="color: #000000FF"> </span><span style="color: #001080">developerId</span><span style="color: #000000FF">, </span><span style="color: #001080">apiKey</span><span style="color: #000000FF"> </span><span style="color: #0000FF">}</span><span style="color: #000000">);</span>
+
+<span style="color: #000000">// Start async block</span>
+<span style="color: #000000">(async () =&gt; </span><span style="color: #0000FF">{</span>
+<span style="color: #000000FF">  </span><span style="color: #AF00DB">await</span><span style="color: #000000FF"> </span><span style="color: #001080">client</span><span style="color: #000000FF">.</span><span style="color: #795E26">initialize</span><span style="color: #000000FF">();</span>
+
+<span style="color: #000000FF">  </span><span style="color: #008000">// See API list for more info</span>
+<span style="color: #000000FF">  </span><span style="color: #001080">const</span><span style="color: #000000FF"> </span><span style="color: #001080">result</span><span style="color: #000000FF"> </span><span style="color: #000000">=</span><span style="color: #000000FF"> </span><span style="color: #AF00DB">await</span><span style="color: #000000FF"> </span><span style="color: #001080">client</span><span style="color: #000000FF">.</span><span style="color: #001080">api</span><span style="color: #000000FF">.</span><span style="color: #000000">&lt;</span><span style="color: #001080">apiFunction</span><span style="color: #000000">&gt;</span><span style="color: #000000FF">(</span><span style="color: #800000">&lt;</span><span style="color: #267F99">apiArgs</span><span style="color: #800000">&gt;</span><span style="color: #000000FF">);</span>
+<span style="color: #000000FF">  console.log(result);</span>
+
+<span style="color: #000000FF">  // Do something with the result</span>
+
+<span style="color: #000000FF">})().then(</span>
+<span style="color: #000000FF">  console.log,</span>
+<span style="color: #000000FF">  console.error</span>
+<span style="color: #000000FF">);</span>
+</code></pre>
+				<a href="#api-list" id="api-list" style="color: inherit; text-decoration: none;">
+					<h2>API list</h2>
+				</a>
+				<a href="#apiparsecontext" id="apiparsecontext" style="color: inherit; text-decoration: none;">
+					<h3>api.parseContext</h3>
+				</a>
+				<p>Takes a list of turns (<code>{ content: string }</code>) and parses them to produce a semantic frames-based context object.</p>
+				<pre><code class="language-javascript"><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">parseContext</span><span style="color: #000000">: (</span><span style="color: #001080">turns</span><span style="color: #000000">: [{ </span><span style="color: #001080">content</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000"> }]) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">context</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">mentions</span><span style="color: #000000"> [</span>
+<span style="color: #000000">      {</span>
+<span style="color: #000000">        </span><span style="color: #001080">evokes</span><span style="color: #000000">,</span>
+<span style="color: #000000">        </span><span style="color: #001080">phrase</span>
+<span style="color: #000000">      }</span>
+<span style="color: #000000">    ]</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#apiparaphrasesentence" id="apiparaphrasesentence" style="color: inherit; text-decoration: none;">
+					<h3>api.paraphraseSentence</h3>
+				</a>
+				<p>Takes an english sentence and produces paraphrased versions of it that retain the semantic meaning of the original.</p>
+				<pre><code class="language-javascript"><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">paraphraseSentence</span><span style="color: #000000">: (</span><span style="color: #001080">sentence</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">, </span><span style="color: #001080">count</span><span style="color: #000000">: </span><span style="color: #267F99">Int</span><span style="color: #000000"> = </span><span style="color: #098658">3</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">paraphrases</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#apipredictnextturn" id="apipredictnextturn" style="color: inherit; text-decoration: none;">
+					<h3>api.predictNextTurn</h3>
+				</a>
+				<p>Takes a list of utterances as history and a list of possible alternatives that can be replied with. Returns the most likely alternative and confidence in that prediction.</p>
+				<pre><code class="language-javascript"><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">predictNextTurn</span><span style="color: #000000">: (</span><span style="color: #001080">history</span><span style="color: #000000">: [</span><span style="color: #267F99">string</span><span style="color: #000000">], </span><span style="color: #001080">alternatives</span><span style="color: #000000">: [</span><span style="color: #267F99">string</span><span style="color: #000000">]) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">nextTurn</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">confidence</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#apimatchintent" id="apimatchintent" style="color: inherit; text-decoration: none;">
+					<h3>api.matchIntent</h3>
+				</a>
+				<p>Takes a list of intents (with slots) and a user input. Performs structured information extraction to find the correct intent and fill the corresponding slots.</p>
+				<pre><code class="language-javascript"><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">matchIntent</span><span style="color: #000000">: (</span>
+<span style="color: #000000">  </span><span style="color: #001080">input</span><span style="color: #000000">: </span><span style="color: #001080">string</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">intent</span><span style="color: #000000">: [</span><span style="color: #001080">string</span><span style="color: #000000">],</span>
+<span style="color: #000000">  </span><span style="color: #001080">threshold</span><span style="color: #000000">: </span><span style="color: #001080">Float</span><span style="color: #000000"> = </span><span style="color: #098658">0.7</span>
+<span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">matches</span><span style="color: #000000"> [</span>
+<span style="color: #000000">    {</span>
+<span style="color: #000000">      </span><span style="color: #001080">intent</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">confidence</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">slots:</span><span style="color: #000000"> [</span>
+<span style="color: #000000">        {</span>
+<span style="color: #000000">          </span><span style="color: #001080">slot</span><span style="color: #000000">,</span>
+<span style="color: #000000">          </span><span style="color: #001080">value</span><span style="color: #000000">,</span>
+<span style="color: #000000">          </span><span style="color: #001080">match_type</span><span style="color: #000000">,</span>
+<span style="color: #000000">          </span><span style="color: #001080">confidence</span>
+<span style="color: #000000">        }</span>
+<span style="color: #000000">      ]</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">  ]</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#apimeasuresimilarity" id="apimeasuresimilarity" style="color: inherit; text-decoration: none;">
+					<h3>api.measureSimilarity</h3>
+				</a>
+				<p>Takes a target sentence and a list of other sentences to compare with for similarity. Returns an array of pairwise similarity scores.</p>
+				<pre><code class="language-javascript"><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">measureSimilarity</span><span style="color: #000000">: (</span><span style="color: #001080">sentence</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">, </span><span style="color: #001080">compareWith</span><span style="color: #000000">: [</span><span style="color: #267F99">string</span><span style="color: #000000">]) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">result</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">score</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">sentencePair</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#apiresolvecoreferences" id="apiresolvecoreferences" style="color: inherit; text-decoration: none;">
+					<h3>api.resolveCoreferences</h3>
+				</a>
+				<pre><code class="language-javascript"><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">resolveCoreferences</span><span style="color: #000000">: (</span><span style="color: #001080">text</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  coref: {</span>
+<span style="color: #000000">    </span><span style="color: #001080">detected</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">resolvedOutput</span><span style="color: #000000">, </span><span style="color: #008000">// Rewritten input with all the coreferences resolved</span>
+<span style="color: #000000">    clusters: [</span>
+<span style="color: #000000">      {</span>
+<span style="color: #000000">        </span><span style="color: #001080">mention</span><span style="color: #000000">, </span><span style="color: #008000">// token(s) detected as a mention of an entity</span>
+<span style="color: #000000">        </span><span style="color: #001080">references:</span><span style="color: #000000"> [</span>
+<span style="color: #000000">          {</span>
+<span style="color: #000000">            </span><span style="color: #001080">match</span><span style="color: #000000">,</span>
+<span style="color: #000000">            </span><span style="color: #001080">score</span>
+<span style="color: #000000">          }</span>
+<span style="color: #000000">        ]</span>
+<span style="color: #000000">      }</span>
+<span style="color: #000000">    ]</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#apitovec" id="apitovec" style="color: inherit; text-decoration: none;">
+					<h3>api.toVec</h3>
+				</a>
+				<p>Takes an English text as an input and returns vector representation for passage, its sentences and entities if found.</p>
+				<pre><code class="language-javascript"><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">toVec</span><span style="color: #000000">: (</span><span style="color: #001080">text</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">has_vector</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">vector</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">vector_norm</span><span style="color: #000000">,</span>
+<span style="color: #000000">  sentences: {</span>
+<span style="color: #000000">    </span><span style="color: #001080">has_vector</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">vector_norm</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">vector</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">text</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">  entities: {</span>
+<span style="color: #000000">    </span><span style="color: #001080">text</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">has_vector</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">vector_norm</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">vector</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#apigetsentiment" id="apigetsentiment" style="color: inherit; text-decoration: none;">
+					<h3>api.getSentiment</h3>
+				</a>
+				<p>Takes plain English input and returns overall and sentence-level sentiment information. Represents positivity or negativity of the passage as a floating point value.</p>
+				<pre><code class="language-javascript"><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">getSentiment</span><span style="color: #000000">: (</span><span style="color: #001080">text</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">sentiment</span><span style="color: #000000">,</span>
+<span style="color: #000000">  sentences: {</span>
+<span style="color: #000000">    </span><span style="color: #001080">text</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">sentiment</span><span style="color: #000000">,</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#apiparsetext" id="apiparsetext" style="color: inherit; text-decoration: none;">
+					<h3>api.parseText</h3>
+				</a>
+				<p>Takes some plain English input and returns parsed categories, entities and sentences.</p>
+				<pre><code class="language-javascript"><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">parseText</span><span style="color: #000000">: (</span><span style="color: #001080">text</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  categories: {</span>
+<span style="color: #000000">    </span><span style="color: #001080">label</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">score</span>
+<span style="color: #000000">  },</span>
+<span style="color: #000000">  entities: {</span>
+<span style="color: #000000">    </span><span style="color: #001080">label</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">lemma</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">text</span>
+<span style="color: #000000">  },</span>
+<span style="color: #000000">  sentences: {</span>
+<span style="color: #000000">    </span><span style="color: #001080">text</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">label</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">lemma</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#apiextractnumericdata" id="apiextractnumericdata" style="color: inherit; text-decoration: none;">
+					<h3>api.extractNumericData</h3>
+				</a>
+				<p>Takes some text and extracts numeric references as a list of tokens with numeric annotations.</p>
+				<pre><code class="language-javascript"><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">extractNumericData</span><span style="color: #000000">: (</span><span style="color: #001080">text</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  tokens: [</span>
+<span style="color: #000000">    {</span>
+<span style="color: #000000">      </span><span style="color: #001080">numeric_analysis:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">        </span><span style="color: #001080">data</span><span style="color: #000000">, </span><span style="color: #008000">// numeric data</span>
+<span style="color: #000000">        </span><span style="color: #001080">has_numeric</span><span style="color: #000000"> </span><span style="color: #008000">// does this token have numeric info?</span>
+<span style="color: #000000">      }</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">  ]</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#apiparsetexttokens" id="apiparsetexttokens" style="color: inherit; text-decoration: none;">
+					<h3>api.parseTextTokens</h3>
+				</a>
+				<p>Takes some plain English string as input and returns a list of its tokens annotated with linguistic information.</p>
+				<pre><code class="language-javascript"><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">parseTextTokens</span><span style="color: #000000">: (</span><span style="color: #001080">text</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  tokens: [</span>
+<span style="color: #000000">    {</span>
+<span style="color: #000000">      </span><span style="color: #001080">dependency</span><span style="color: #000000">, </span><span style="color: #008000">// Type of dependency: PNP, VB ...</span>
+<span style="color: #000000">      </span><span style="color: #001080">entity_type</span><span style="color: #000000">, </span><span style="color: #008000">// Type of entity: PERSON ...</span>
+<span style="color: #000000">      </span><span style="color: #001080">is_alpha</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">is_currency</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">is_digit</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">is_oov</span><span style="color: #000000">, </span><span style="color: #008000">// is out of vocabulary</span>
+<span style="color: #000000">      </span><span style="color: #001080">is_sent_start</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">is_stop</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">is_title</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">lemma</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">like_email</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">like_num</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">like_url</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">part_of_speech</span><span style="color: #000000">, </span><span style="color: #008000">// verb, noun ...</span>
+<span style="color: #000000">      </span><span style="color: #001080">prob</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">tag</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">text</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">  ]</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#apirendercss" id="apirendercss" style="color: inherit; text-decoration: none;">
+					<h3>api.renderCSS</h3>
+				</a>
+				<p>Takes ssml and corresponding styles as a css string. Returns base64 encoded audio.</p>
+				<pre><code class="language-javascript"><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">renderCSS</span><span style="color: #000000">: (</span><span style="color: #001080">ssml</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">, </span><span style="color: #001080">css</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">result</span><span style="color: #000000"> </span><span style="color: #008000">// base64 encoded audio</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#apispeechtotext" id="apispeechtotext" style="color: inherit; text-decoration: none;">
+					<h3>api.speechToText</h3>
+				</a>
+				<p>Takes base64 encoded audio as input and returns a list of possible transcripts (sorted in order of decreasing confidence).</p>
+				<pre><code class="language-javascript"><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">speechToText</span><span style="color: #000000">: (</span><span style="color: #001080">audio</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  transcript: [</span>
+<span style="color: #000000">    {</span>
+<span style="color: #000000">      </span><span style="color: #001080">text</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">  ]</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#apitexttospeech" id="apitexttospeech" style="color: inherit; text-decoration: none;">
+					<h3>api.textToSpeech</h3>
+				</a>
+				<p>Takes text (<code>string</code>) as input and returns audio encoded as a base64 string.</p>
+				<pre><code class="language-javascript"><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #001080">textToSpeech</span><span style="color: #000000">: (</span><span style="color: #001080">text</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">audio</span><span style="color: #000000"> </span><span style="color: #008000">// base64 encoded audio</span>
+<span style="color: #000000">}</span>
+
+</code></pre>
+				<hr>
+				<a href="#building" id="building" style="color: inherit; text-decoration: none;">
+					<h2>Building</h2>
+				</a>
+				<a href="#note-on-package-style-commonjs-vs-esm" id="note-on-package-style-commonjs-vs-esm" style="color: inherit; text-decoration: none;">
+					<h3>Note on package style commonjs vs esm</h3>
+				</a>
+				<ul>
+					<li>The <code>esm/</code> directory is marked as a nodejs-native ES module using <code>esm/package.json</code></li>
+				</ul>
+				<a href="#instructions-for-building-package" id="instructions-for-building-package" style="color: inherit; text-decoration: none;">
+					<h3>Instructions for building package</h3>
+				</a>
+				<ul>
+					<li>Edit files in <code>src/</code> directory</li>
+					<li>Run <code>npm run build</code></li>
+					<li>Add test cases in <code>cjs/tests/</code> directory. File names need to start with <code>test_</code>.</li>
+					<li>Make sure to set env vars: <code>export MAUNA_DEVELOPER_ID=XX MAUNA_API_KEY=XXX</code></li>
+					<li>Run <code>npm test</code></li>
+				</ul>
+				<a href="#instructions-for-publishing-package" id="instructions-for-publishing-package" style="color: inherit; text-decoration: none;">
+					<h3>Instructions for publishing package</h3>
+				</a>
+				<ul>
+					<li>If build successful, <strong>before committing results</strong>, run <code>npm run version bump</code>.</li>
+					<li><code>npm publish --access public</code></li>
+				</ul>
+				<a href="#instructions-for-updating-docs" id="instructions-for-updating-docs" style="color: inherit; text-decoration: none;">
+					<h3>Instructions for updating docs</h3>
+				</a>
+				<p>Docs are built using <code>typedoc</code> and published on github pages.</p>
+				<ul>
+					<li>Run <code>npm run docs</code></li>
+					<li>Commit all changes,</li>
+					<li>Then <code>git checkout gh-pages</code> and <code>git merge &lt;original-branch&gt;</code></li>
+					<li><code>git push origin gh-pages</code></li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
+					</li>
+					<li class=" tsd-kind-namespace">
+						<a href="modules/types.html">types</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-reference">
+						<a href="modules.html#default" class="tsd-kind-icon">default</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/mauna.html" class="tsd-kind-icon">Mauna</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

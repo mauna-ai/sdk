@@ -2,7 +2,6 @@
 .tmp/
 
 # Generated files
-/docs/
 /src/generated/
 /esm/**/*.js
 /esm/**/*.ts
