@@ -1,5 +1,7 @@
 # Mauna SDK
 
+_Version: 0.2.7_
+
 ## Features
 
 - Docs can be found [here](https://mauna-ai.github.io/sdk).
@@ -282,4 +284,36 @@ Takes text (`string`) as input and returns audio encoded as a base64 string.
 api.textToSpeech: (text: string) => {
   audio // base64 encoded audio
 }
+
 ```
+
+*****
+
+## Building
+
+### Note on package style commonjs vs esm
+
+- The `esm/` directory is marked as a nodejs-native ES module using `esm/package.json`
+
+### Instructions for building package
+
+- Edit files in `src/` directory
+- Run `npm run build`
+- Add test cases in `cjs/tests/` directory. File names need to start with `test_`.
+- Make sure to set env vars: `export MAUNA_DEVELOPER_ID=XX MAUNA_API_KEY=XXX`
+- Run `npm test`
+
+### Instructions for publishing package
+
+- If build successful, **before committing results**, run `npm run version bump`.
+- `npm publish --access public`
+
+### Instructions for updating docs
+
+Docs are built using `typedoc` and published on github pages.
+
+- Update version on this README
+- Run `npm run docs`
+- Commit all changes,
+- Then `git checkout gh-pages` and `git merge <original-branch>`
+- `git push origin gh-pages`

@@ -5,13 +5,15 @@
 /lib/
 /docs/
 /src/generated/
-/esm/
+/esm/**/*.js
+/esm/**/*.ts
+/esm/**/*.map
+!/esm/package.json
 /cjs/**/*.js
 /cjs/**/*.ts
 /cjs/**/*.map
 !/cjs/tests/**/*.js
 !/cjs/codegen.js
-!/cjs/package.json
 
 # Vim shit
 *.swp

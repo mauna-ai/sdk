@@ -1,10 +1,10 @@
 {
     "name": "@mauna/sdk",
-    "version": "0.2.7",
+    "version": "0.2.8",
     "description": "Code generated from Mauna API schema for CLI, SDK etc",
     "main": "./cjs/index.js",
     "module": "./esm/index.js",
-    "type": "module",
+    "type": "commonjs",
     "exports": {
         "./esm": "./esm/index.js",
         ".": "./cjs/index.js"
@@ -20,8 +20,8 @@
         "codegen": "graphql-codegen --config cjs/codegen.js",
         "tsc": "tsc && tsc -p tsconfig-cjs.json",
         "docs": "typedoc src/index.ts --out ./docs",
-        "prepublishOnly": "npm run lint && npm run build && npm test",
-        "build": "npm run codegen && npm run tsc && npm run docs"
+        "prepublishOnly": "npm run build && npm test",
+        "build": "npm run codegen && npm run tsc && npm run lint && npm run docs"
     },
     "repository": {
         "type": "git",
