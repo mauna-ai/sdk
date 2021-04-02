@@ -31,6 +31,10 @@ export MAUNA_API_KEY="<developer_api_key>"
 mauna-playground
 ```
 
+#### Playground screenshot
+
+![Playground screenshot](assets/mauna_playground_screenshot.png?raw=true "Playground screenshot")
+
 ### Usage as an SDK
 
 ```javascript
