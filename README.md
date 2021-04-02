@@ -13,13 +13,35 @@
 
 `npm install @mauna/sdk`
 
-### Usage
+### Playground
+
+This package ships with a CLI-based playground for quickly trying out queries and APIs.
+You can call it directly if installed globally. You need to set `MAUNA_DEVELOPER_ID` and `MAUNA_API_KEY` environment variables for authentication.
+
+```bash
+npm i -g @mauna/sdk
+
+# Or if using yarn:
+# yarn global add @mauna/sdk
+
+# Set auth variables; see the Developers section on the dashboard for this
+export MAUNA_DEVELOPER_ID=<developer_id>
+export MAUNA_API_KEY="<developer_api_key>"
+
+mauna-playground
+```
+
+### Usage as an SDK
 
 ```javascript
-import Mauna from "@mauna/sdk";
+const { Mauna } = require("@mauna/sdk");
 
-const developerId = <int>; // Check your profile on the dashboard for this.
-const apiKey = "<64 letter api key available on your mauna dashboard>";
+// If using esm:
+// import Mauna from "@mauna/sdk/esm";
+
+// Check the Developers section on the dashboard for this.
+const developerId = 999;
+const apiKey = "<64 letter api key from your mauna dashboard>";
 
 const client = new Mauna: ({ developerId, apiKey });
 
@@ -28,7 +50,7 @@ const client = new Mauna: ({ developerId, apiKey });
   await client.initialize();
 
   // See API list for more info
-  const result = await client.api.<apiFunction>(<apiArgs>);
+  const result = await client.api.chitchat({ input, history });
   console.log(result);
 
   // Do something with the result

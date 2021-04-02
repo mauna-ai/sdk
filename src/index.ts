@@ -1,3 +1,5 @@
+import assert from "assert";
+
 import Client from "./client";
 import { getSdk } from "./generated/sdk";
 import { withRetries } from "./utils/wrapper";
@@ -5,8 +7,6 @@ import { withRetries } from "./utils/wrapper";
 import type { Sdk } from "./generated/sdk";
 import type * as types from "./generated/types";
 import type { credentials } from "./client";
-
-// export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
 
 export class Mauna {
   initialized: boolean;
@@ -17,18 +17,23 @@ export class Mauna {
 
   constructor({ developerId, apiKey }: credentials) {
     this.initialized = false;
-    this.developerId = developerId;
+    this.developerId = parseInt(developerId.toString());
     this.apiKey = apiKey;
+
+    assert(this.developerId);
+    assert(this.apiKey);
   }
 
-  async initialize() {
+  async initialize(): Promise<Mauna> {
     const { initialized, developerId, apiKey } = this;
 
-    if (initialized) return;
+    if (initialized) return this;
 
     this.client = await Client.create({ developerId, apiKey });
     this._api = getSdk(this.client, withRetries);
     this.initialized = true;
+
+    return this;
   }
 
   public get api(): Sdk {

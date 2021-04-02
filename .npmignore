@@ -1,3 +1,6 @@
+# Include
+!/.replrc.js
+
 # Temp files
 /.tmp/**/*
 /cjs/.tmp/**/*
