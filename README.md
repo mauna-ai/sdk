@@ -33,7 +33,7 @@ mauna-playground
 
 #### Playground screenshot
 
-![Playground screenshot](assets/mauna_playground_screenshot.png?raw=true "Playground screenshot")
+![Playground screenshot](https://github.com/mauna-ai/sdk/raw/main/assets/mauna_playground_screenshot.png?raw=true "Playground screenshot")
 
 ### Usage as an SDK
 
