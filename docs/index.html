@@ -77,30 +77,50 @@
 					<h3>Install</h3>
 				</a>
 				<p><code>npm install @mauna/sdk</code></p>
-				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
-					<h3>Usage</h3>
+				<a href="#playground" id="playground" style="color: inherit; text-decoration: none;">
+					<h3>Playground</h3>
 				</a>
-				<pre><code class="language-javascript"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">Mauna</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;@mauna/sdk&quot;</span><span style="color: #000000">;</span>
+				<p>This package ships with a CLI-based playground for quickly trying out queries and APIs.
+				You can call it directly if installed globally. You need to set <code>MAUNA_DEVELOPER_ID</code> and <code>MAUNA_API_KEY</code> environment variables for authentication.</p>
+				<pre><code class="language-bash"><span style="color: #000000">npm i -g @mauna/sdk</span>
 
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">developerId</span><span style="color: #000000"> = </span><span style="color: #800000">&lt;int&gt;</span><span style="color: #000000">; // Check your profile on the dashboard for this.</span>
-<span style="color: #000000">const apiKey = &quot;&lt;64 letter api key available on your mauna dashboard&gt;&quot;;</span>
+<span style="color: #008000"># Or if using yarn:</span>
+<span style="color: #008000"># yarn global add @mauna/sdk</span>
 
-<span style="color: #000000">const client = new Mauna: (</span><span style="color: #0000FF">{</span><span style="color: #000000FF"> </span><span style="color: #001080">developerId</span><span style="color: #000000FF">, </span><span style="color: #001080">apiKey</span><span style="color: #000000FF"> </span><span style="color: #0000FF">}</span><span style="color: #000000">);</span>
+<span style="color: #008000"># Set auth variables; see the Developers section on the dashboard for this</span>
+<span style="color: #0000FF">export</span><span style="color: #000000"> MAUNA_DEVELOPER_ID=&lt;developer_id&gt;</span>
+<span style="color: #0000FF">export</span><span style="color: #000000"> MAUNA_API_KEY=</span><span style="color: #A31515">&quot;&lt;developer_api_key&gt;&quot;</span>
 
-<span style="color: #000000">// Start async block</span>
-<span style="color: #000000">(async () =&gt; </span><span style="color: #0000FF">{</span>
-<span style="color: #000000FF">  </span><span style="color: #AF00DB">await</span><span style="color: #000000FF"> </span><span style="color: #001080">client</span><span style="color: #000000FF">.</span><span style="color: #795E26">initialize</span><span style="color: #000000FF">();</span>
+<span style="color: #000000">mauna-playground</span>
+</code></pre>
+				<a href="#usage-as-an-sdk" id="usage-as-an-sdk" style="color: inherit; text-decoration: none;">
+					<h3>Usage as an SDK</h3>
+				</a>
+				<pre><code class="language-javascript"><span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #0070C1">Mauna</span><span style="color: #000000"> } = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;@mauna/sdk&quot;</span><span style="color: #000000">);</span>
 
-<span style="color: #000000FF">  </span><span style="color: #008000">// See API list for more info</span>
-<span style="color: #000000FF">  </span><span style="color: #001080">const</span><span style="color: #000000FF"> </span><span style="color: #001080">result</span><span style="color: #000000FF"> </span><span style="color: #000000">=</span><span style="color: #000000FF"> </span><span style="color: #AF00DB">await</span><span style="color: #000000FF"> </span><span style="color: #001080">client</span><span style="color: #000000FF">.</span><span style="color: #001080">api</span><span style="color: #000000FF">.</span><span style="color: #000000">&lt;</span><span style="color: #001080">apiFunction</span><span style="color: #000000">&gt;</span><span style="color: #000000FF">(</span><span style="color: #800000">&lt;</span><span style="color: #267F99">apiArgs</span><span style="color: #800000">&gt;</span><span style="color: #000000FF">);</span>
-<span style="color: #000000FF">  console.log(result);</span>
+<span style="color: #008000">// If using esm:</span>
+<span style="color: #008000">// import Mauna from &quot;@mauna/sdk/esm&quot;;</span>
 
-<span style="color: #000000FF">  // Do something with the result</span>
+<span style="color: #008000">// Check the Developers section on the dashboard for this.</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">developerId</span><span style="color: #000000"> = </span><span style="color: #098658">999</span><span style="color: #000000">;</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">apiKey</span><span style="color: #000000"> = </span><span style="color: #A31515">&quot;&lt;64 letter api key from your mauna dashboard&gt;&quot;</span><span style="color: #000000">;</span>
 
-<span style="color: #000000FF">})().then(</span>
-<span style="color: #000000FF">  console.log,</span>
-<span style="color: #000000FF">  console.error</span>
-<span style="color: #000000FF">);</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">client</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #001080">Mauna</span><span style="color: #000000">: ({ </span><span style="color: #001080">developerId</span><span style="color: #000000">, </span><span style="color: #001080">apiKey</span><span style="color: #000000"> });</span>
+
+<span style="color: #008000">// Start async block</span>
+<span style="color: #000000">(</span><span style="color: #0000FF">async</span><span style="color: #000000"> () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">initialize</span><span style="color: #000000">();</span>
+
+<span style="color: #000000">  </span><span style="color: #008000">// See API list for more info</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">result</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #001080">api</span><span style="color: #000000">.</span><span style="color: #795E26">chitchat</span><span style="color: #000000">({ </span><span style="color: #001080">input</span><span style="color: #000000">, </span><span style="color: #001080">history</span><span style="color: #000000"> });</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">result</span><span style="color: #000000">);</span>
+
+<span style="color: #000000">  </span><span style="color: #008000">// Do something with the result</span>
+
+<span style="color: #000000">})().</span><span style="color: #795E26">then</span><span style="color: #000000">(</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #001080">log</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #001080">error</span>
+<span style="color: #000000">);</span>
 </code></pre>
 				<a href="#api-list" id="api-list" style="color: inherit; text-decoration: none;">
 					<h2>API list</h2>
@@ -337,7 +357,7 @@
 				<ul>
 					<li>Edit files in <code>src/</code> directory</li>
 					<li>Run <code>npm run build</code></li>
-					<li>Add test cases in <code>cjs/tests/</code> directory. File names need to start with <code>test_</code>.</li>
+					<li>Add test cases in <code>tests/</code> directory. File names need to start with <code>test_</code>.</li>
 					<li>Make sure to set env vars: <code>export MAUNA_DEVELOPER_ID=XX MAUNA_API_KEY=XXX</code></li>
 					<li>Run <code>npm test</code></li>
 				</ul>
