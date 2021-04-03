@@ -1,17 +1,17 @@
 // .replrc.js
-const assert = require("assert");
 const lodash = require("lodash");
 const chalk = require("chalk");
 
 // Load module
 const { Mauna } = require("./");
+const { ensureEnv } = require("./cjs/utils/ensureEnv");
 const pkg = require("./package.json");
 
 // Get API keys
-const { MAUNA_API_KEY, MAUNA_DEVELOPER_ID } = process.env;
+ensureEnv("MAUNA_DEVELOPER_ID", 1);
+ensureEnv("MAUNA_API_KEY", 1);
 
-assert(MAUNA_DEVELOPER_ID, "Please set the MAUNA_DEVELOPER_ID environment variable");
-assert(MAUNA_API_KEY, "Please set the MAUNA_API_KEY environment variable");
+const { MAUNA_API_KEY, MAUNA_DEVELOPER_ID } = process.env;
 
 // Create client
 const client = new Mauna({
