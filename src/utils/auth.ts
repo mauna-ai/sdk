@@ -1,3 +1,5 @@
+// src/utils/auth.ts
+
 import isomorphicFetch from "isomorphic-fetch";
 isomorphicFetch;
 

@@ -1,3 +1,5 @@
+// src/utils/gqlLodash.ts
+
 import compact from "lodash/compact";
 import flatten from "lodash/flatten";
 import flow from "lodash/flow";
