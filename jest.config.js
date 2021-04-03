@@ -6,7 +6,7 @@ module.exports = {
   // automock: false,
 
   // Stop running tests after `n` failures
-  bail: 3,
+  // bail: 3,
 
   // Respect "browser" field in package.json when resolving modules
   // browser: true,

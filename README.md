@@ -340,3 +340,8 @@ Docs are built using `typedoc` and published on github pages.
 - Commit all changes,
 - Then `git checkout gh-pages` and `git merge <original-branch>`
 - `git push origin gh-pages`
+
+## Load testing
+
+- Install GNU parallel command
+- Run `NUM=100 npm run load-test`

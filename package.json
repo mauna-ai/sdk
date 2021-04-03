@@ -20,6 +20,7 @@
         "esm/"
     ],
     "scripts": {
+        "load-test": "npm config set script-shell `which bash`; seq ${NUM:-100} | parallel --lb -N0 -j $(bc -l <<<\"`nproc --all`*4\") 'npm test'",
         "lint": "eslint . --fix",
         "test": "validEnv MAUNA_API_KEY MAUNA_DEVELOPER_ID && jest --passWithNoTests",
         "repl": "validEnv MAUNA_API_KEY MAUNA_DEVELOPER_ID && local-repl",
