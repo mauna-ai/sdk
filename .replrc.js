@@ -4,7 +4,7 @@ const chalk = require("chalk");
 
 // Load module
 const { Mauna } = require("./");
-const { ensureEnv } = require("./utils/ensureEnv");
+const { ensureEnv } = require("./cjs/utils/ensureEnv");
 const pkg = require("./package.json");
 
 // Get API keys
