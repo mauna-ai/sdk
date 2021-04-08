@@ -17,18 +17,23 @@ export class TokenCache {
     return path.join(os.tmpdir(), `mauna-${this._hash}-${ts}`);
   }
 
-  read(): string {
-    while (lockfile.checkSync(this.cachePath, { stale: 5000 })) { 
-      // wait until the file is unlocked
+  read(): string | null {
+    const cachePath = this.cachePath;
+    try {
+      while (lockfile.checkSync(cachePath, { stale: 5000 })) {
+        // wait until the file is unlocked
+      }
+      return fs.readFileSync(cachePath).toString().trim();
+    } catch {
+      return null;
     }
-    return fs.readFileSync(this.cachePath).toString().trim();
   }
 
   write(data: string) {
-    try {
-      const release = lockfile.lockSync(this.cachePath, { stale: 5000 });
-      fs.writeFileSync(this.cachePath, data);
-      release();
-    } catch { return; }
+    const cachePath = this.cachePath;
+    fs.closeSync(fs.openSync(cachePath, "a"));
+    const release = lockfile.lockSync(cachePath, { stale: 5000 });
+    fs.writeFileSync(cachePath, data);
+    release();
   }
 }
