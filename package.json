@@ -51,6 +51,7 @@
         "@types/isomorphic-fetch": "^0.0.35",
         "@types/jest": "^26.0.22",
         "@types/lodash": "^4.14.168",
+        "@types/proper-lockfile": "^4.1.1",
         "@typescript-eslint/eslint-plugin": "^4.20.0",
         "@typescript-eslint/parser": "^4.20.0",
         "chalk": "^4.1.0",
@@ -75,7 +76,9 @@
         "graphql-tag": "^2.11.0",
         "isomorphic-fetch": "^3.0.0",
         "local-repl": "^4.0.0",
+        "moment": "^2.29.1",
         "polly-js": "^1.8.0",
+        "proper-lockfile": "^4.1.2",
         "reason-dataloader": "^0.1.1"
     }
 }
