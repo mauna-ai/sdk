@@ -9,7 +9,8 @@ module.exports = {
     "./src/generated/sdk.ts": {
       config: {
         pureMagicComment: true,
-        gqlImport: "../utils/gqlLodash#gql",
+        // FIXME: Re-enable after bug fix
+        // gqlImport: "../utils/gqlLodash#gql",
       },
       plugins: [
         "typescript",
