@@ -1,6 +1,6 @@
 {
     "name": "@mauna/sdk",
-    "version": "0.2.19",
+    "version": "0.2.20",
     "description": "Code generated from Mauna API schema for CLI, SDK etc",
     "main": "./cjs/index.js",
     "module": "./esm/index.js",
@@ -29,7 +29,7 @@
         "tsc": "tsc && tsc -p tsconfig-cjs.json",
         "docs": "typedoc src/index.ts --out ./docs",
         "prepublishOnly": "[ -z $SKIP_PREPUBLISH ] && npm test || exit 0",
-        "prune-symlinks": "cd src/documents && for m in $(\find . -xtype l); do \rm $m; done",
+        "prune-symlinks": "cd src/documents && for m in $(find . -xtype l); do rm $m; done",
         "add-symlinks": "cd src/documents && for m in ../../mauna_graphql/common/*.graphql ; do ln -s $m \"${m##*/}\"; done",
         "build": "npm run codegen && npm run tsc && npm run lint && npm run docs"
     },
